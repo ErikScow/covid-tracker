@@ -28,7 +28,8 @@ function App() {
   const [countriesData, setCountriesData] = useState([])
   const [statesData, setStatesData] = useState([])
 
-  const [graphData, setGraphData] = useState([])
+  const [graphDataStates, setGraphDataStates] = useState([])
+  const [graphDataCountries, setGraphDataCountries] = useState([])
   const [clipBoard, setClipBoard] = useState([])
 
   const [currentLocationType, setCurrentLocationType] = useState('countries')
@@ -47,6 +48,7 @@ function App() {
           formattedData.push(
             {
               locationName: country,
+              locationType: 'country',
               totalCases: commafyNum(data[country].All.confirmed),
               totalDeaths: commafyNum(data[country].All.deaths),
               population: data[country].All.population,
@@ -138,13 +140,14 @@ function App() {
           formattedData.push(
             {
               locationName: convertStateName(data[i].state),
+              locationType: 'state',
               totalCases: commafyNum(data[i].positive),
               totalDeaths: commafyNum(data[i].death),
               population: statePopulation,
               casesPerMil: abbreviateNum((data[i].positive/statePopulation)*1000000),
               deathsPerMil: abbreviateNum((data[i].death/statePopulation)*1000000),
               deathRate:((data[i].death/data[i].positive)*100).toFixed(2),
-              abbreviation: data[i].state
+              abbreviation: data[i].state.toLowerCase()
             }
           )
         }
@@ -164,7 +167,8 @@ function App() {
         continentsData: [continentsData, setContinentsData],
         countriesData: [countriesData, setCountriesData],
         statesData: [statesData, setStatesData],
-        graphData: [graphData, setGraphData],
+        graphDataStates: [graphDataStates, setGraphDataStates],
+        graphDataCountries: [graphDataCountries, setGraphDataCountries],
         clipBoard: [clipBoard, setClipBoard],
         currentLocationType: [currentLocationType, setCurrentLocationType],
       }}>

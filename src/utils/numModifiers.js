@@ -5,7 +5,7 @@ export {
 
 //takes a number and converts to abbreviated num string up to 10 billion (145.0B, 12.4M, 2.2K, etc.)
 function abbreviateNum(t){
-    const chars = t.toFixed(2).toString()
+    const chars = t.toString()
         if (t>=1000){
             const firstChar = chars.slice(0,1)
             const secondChar = chars.slice(1,2)
@@ -29,7 +29,7 @@ function abbreviateNum(t){
             }
             return numString
         } else {
-            return chars
+            return t.toFixed(0).toString()
         }
 }
 

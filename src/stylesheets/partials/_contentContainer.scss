@@ -2,7 +2,7 @@
     width: 60%;
     margin: 50px auto 0px;
     .container{
-        padding: 15px 0;
+        padding: 10px 0;
         border-bottom: 1px solid lightgrey;
         .columns{
             display: flex;
@@ -11,9 +11,11 @@
             
             .name-row{
                 width: 20%;
+                padding: 5px;
             }
             .row-item{
                     width:18%;
+                    padding: 5px 0;
                 }
             .other-rows{
                 display:flex;

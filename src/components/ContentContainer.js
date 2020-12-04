@@ -45,11 +45,14 @@ const ContentContainer = (props) => {
                 return <DataComponent 
                         key={index} 
                         locationName={location.locationName} 
+                        locationType={location.locationType}
                         totalCases={location.totalCases}
                         totalDeaths={location.totalDeaths}
                         casesPerMil={location.casesPerMil}
                         deathsPerMil={location.deathsPerMil}
                         deathRate={location.deathRate}
+                        abbreviation={location.abbreviation}
+
                         />
             })}
         </div>
