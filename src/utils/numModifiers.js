@@ -1,12 +1,11 @@
 export {
     abbreviateNum,
     commafyNum,
-    removePlus
 }
 
 //takes a number and converts to abbreviated num string up to 10 billion (145.0B, 12.4M, 2.2K, etc.)
 function abbreviateNum(t){
-    const chars = t.toString()
+    const chars = t.toFixed(2).toString()
         if (t>=1000){
             const firstChar = chars.slice(0,1)
             const secondChar = chars.slice(1,2)
@@ -39,17 +38,5 @@ function commafyNum(num){
         return null
     } else {
         return num.toLocaleString()
-    }
-}
-
-
-//takes a string in format "+{num}" and returns commafied num
-function removePlus(str){
-    if (str === null){
-        return null
-    } else {
-        const trimmed = str.slice(1)
-        const integer = parseInt(trimmed)
-        return commafyNum(integer)
     }
 }

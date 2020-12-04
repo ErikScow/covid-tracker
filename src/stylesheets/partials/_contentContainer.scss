@@ -1,4 +1,42 @@
 .content-container{
     width: 60%;
     margin: 50px auto 0px;
+    .container{
+        padding: 15px 0;
+        border-bottom: 1px solid lightgrey;
+        .columns{
+            display: flex;
+            justify-content: space-between;
+            
+            
+            .name-row{
+                width: 20%;
+            }
+            .row-item{
+                    width:18%;
+                }
+            .other-rows{
+                display:flex;
+                justify-content: space-between;
+                width: 75%;
+                text-align: center;
+            }    
+            &.data{
+                &:hover{
+                    cursor: pointer;
+                }
+                .other-rows{
+                    .row-item{
+                        text-align:right;
+                        padding-right:30px;
+                    }
+                }
+                
+            
+            }
+        }
+    }
+    
+    
+    
 }

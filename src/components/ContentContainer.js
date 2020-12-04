@@ -27,11 +27,29 @@ const ContentContainer = (props) => {
     return(
         <div className='content-container'>
             <SideControlls/>
-            {displayData.map((country,index) => {
+            <div className='container'>
+                <div className='columns'>
+                    <p className='name-row'>Location</p>
+                    <div className='other-rows'>
+                        <p className='row-item'>Cases</p>
+                        <p className='row-item'>Deaths</p>
+                        <p className='row-item'>Cases/Mil</p>
+                        <p className='row-item'>Deaths/Mil</p>
+                        <p className='row-item'>Death Rate</p>
+                    </div>
+                   
+                </div>
+            </div>
+            
+            {displayData.map((location,index) => {
                 return <DataComponent 
                         key={index} 
-                        locationName={country.locationName} 
-                        totalCases={country.totalCases}
+                        locationName={location.locationName} 
+                        totalCases={location.totalCases}
+                        totalDeaths={location.totalDeaths}
+                        casesPerMil={location.casesPerMil}
+                        deathsPerMil={location.deathsPerMil}
+                        deathRate={location.deathRate}
                         />
             })}
         </div>

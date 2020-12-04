@@ -13,7 +13,6 @@ import { Context } from './contexts/context'
 import {
   abbreviateNum,
   commafyNum,
-  removePlus
 } from './utils/numModifiers'
 import {
   convertStateName
@@ -42,28 +41,19 @@ function App() {
         const formattedData = []
         console.log(res)
         for(const country in data){
-          formattedData.push(
-            {
-              locationName: data[country].All.country,
-              totalCases: commafyNum(data[country].All.confirmed),
-              totalDeaths: commafyNum(data[country].All.deaths),
-              population: data[country].All.population,
-              casesPerMil: 
-            }
-          )
-        }
-        for( let i=0; i<data.length; i++ ){
-          const willNotBeSaved = (data[i].country === 'All' || data[i].country === 'Diamond-Princess-' || data[i].country === 'North-America' || data[i].country === 'Europe' || data[i].country === 'South-America' || data[i].country === 'Africa' || data[i].country === 'Asia')
-          if(willNotBeSaved){
+          if (country.length > 20 || country === "Global"){
             continue
           }
           formattedData.push(
             {
-              locationName: data[i].country,
-              totalCases: commafyNum(data[i].cases.total),
-              totalDeaths: commafyNum(data[i].deaths.total),
-              newCases: removePlus(data[i].cases.new),
-              newDeaths: removePlus(data[i].deaths.new)
+              locationName: country,
+              totalCases: commafyNum(data[country].All.confirmed),
+              totalDeaths: commafyNum(data[country].All.deaths),
+              population: data[country].All.population,
+              casesPerMil: abbreviateNum((data[country].All.confirmed / data[country].All.population) * 1000000000),
+              deathsPerMil: abbreviateNum((data[country].All.deaths / data[country].All.population) * 1000000000),
+              deathRate: ((data[country].All.deaths/data[country].All.confirmed)*100).toFixed(2),
+              abbreviation: data[country].All.abbreviation
             }
           )
         }
@@ -76,6 +66,67 @@ function App() {
     axios.get('https://api.covidtracking.com/v1/states/current.json')
       .then(res => {
         const data = res.data
+        const statePopulationHash = {
+          'AL': 4903185,
+          'AK': 731545,
+          'AS': 55312,
+          'AZ': 7278717,
+          'AR': 3017804,
+          'CA': 39512223,
+          'CO': 5758736,
+          'CT': 3565287,
+          'DE': 973764,
+          'DC': 705749,
+          'FM': 104929,
+          'FL': 21477737,
+          'GA': 10617423,
+          'GU': 167294,
+          'HI': 1415872,
+          'ID': 1787065,
+          'IL': 12671821,
+          'IN': 6732219,
+          'IA': 3155070,
+          'KS': 2913314,
+          'KY': 4467673,
+          'LA': 4648794,
+          'ME': 1344212,
+          'MH': 58791,
+          'MD': 6045680,
+          'MA': 6892503,
+          'MI': 9986857,
+          'MN': 5639632,
+          'MS': 2976149,
+          'MO': 6137428,
+          'MT': 1068778,
+          'NE': 1934408,
+          'NV': 3080156,
+          'NH': 1359711,
+          'NJ': 8882190,
+          'NM': 2096829,
+          'NY': 19453561,
+          'NC': 10488084,
+          'ND': 762062,
+          'MP': 51994,
+          'OH': 11689100,
+          'OK': 3956971,
+          'OR': 4217737,
+          'PW': 18008,
+          'PA': 12801989,
+          'PR': 3193694,
+          'RI': 1059361,
+          'SC': 5148714,
+          'SD': 884659,
+          'TN': 6829174,
+          'TX': 28995881,
+          'UT': 3205958,
+          'VT': 623989,
+          'VI': 104578,
+          'VA': 8535519,
+          'WA': 7614893,
+          'WV': 1792147,
+          'WI': 5822434,
+          'WY': 578759
+          }
         const formattedData = []
         console.log(res)
         for( let i=0; i<data.length; i++ ){
@@ -83,14 +134,17 @@ function App() {
           if(willNotBeSaved){
             continue
           }
+          let statePopulation = statePopulationHash[`${data[i].state}`]
           formattedData.push(
             {
               locationName: convertStateName(data[i].state),
               totalCases: commafyNum(data[i].positive),
               totalDeaths: commafyNum(data[i].death),
-              newCases: commafyNum(data[i].positiveIncrease),
-              newDeaths: commafyNum(data[i].deathIncrease)
-
+              population: statePopulation,
+              casesPerMil: abbreviateNum((data[i].positive/statePopulation)*1000000000),
+              deathsPerMil: abbreviateNum((data[i].death/statePopulation)*1000000000),
+              deathRate:((data[i].death/data[i].positive)*100).toFixed(2),
+              abbreviation: data[i].state
             }
           )
         }
