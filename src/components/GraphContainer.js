@@ -48,6 +48,7 @@ const GraphContainer = (props) => {
 
     return(
         <div className='graph-outer-container'>
+            
             <GraphComponent/>
         </div>
     )
