@@ -41,7 +41,7 @@ function App() {
         const formattedData = []
         console.log(res)
         for(const country in data){
-          if (country.length > 20 || country === "Global"){
+          if (country.length > 20 || country === "Global" || !data[country].All.abbreviation || !data[country].All.population){
             continue
           }
           formattedData.push(
@@ -50,8 +50,8 @@ function App() {
               totalCases: commafyNum(data[country].All.confirmed),
               totalDeaths: commafyNum(data[country].All.deaths),
               population: data[country].All.population,
-              casesPerMil: abbreviateNum((data[country].All.confirmed / data[country].All.population) * 1000000000),
-              deathsPerMil: abbreviateNum((data[country].All.deaths / data[country].All.population) * 1000000000),
+              casesPerMil: abbreviateNum((data[country].All.confirmed / data[country].All.population) * 1000000),
+              deathsPerMil: abbreviateNum((data[country].All.deaths / data[country].All.population) * 1000000),
               deathRate: ((data[country].All.deaths/data[country].All.confirmed)*100).toFixed(2),
               abbreviation: data[country].All.abbreviation
             }
@@ -141,8 +141,8 @@ function App() {
               totalCases: commafyNum(data[i].positive),
               totalDeaths: commafyNum(data[i].death),
               population: statePopulation,
-              casesPerMil: abbreviateNum((data[i].positive/statePopulation)*1000000000),
-              deathsPerMil: abbreviateNum((data[i].death/statePopulation)*1000000000),
+              casesPerMil: abbreviateNum((data[i].positive/statePopulation)*1000000),
+              deathsPerMil: abbreviateNum((data[i].death/statePopulation)*1000000),
               deathRate:((data[i].death/data[i].positive)*100).toFixed(2),
               abbreviation: data[i].state
             }

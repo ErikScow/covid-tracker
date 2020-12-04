@@ -99,14 +99,13 @@ nav .link-container {
   display: flex;
   justify-content: space-between;
   width: 75%;
-  text-align: center;
+  text-align: right;
 }
 .content-container .container .columns.data:hover {
   cursor: pointer;
 }
 .content-container .container .columns.data .other-rows .row-item {
   text-align: right;
-  padding-right: 30px;
 }
 
 .side-controlls {

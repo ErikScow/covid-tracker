@@ -19,7 +19,7 @@
                 display:flex;
                 justify-content: space-between;
                 width: 75%;
-                text-align: center;
+                text-align: right;
             }    
             &.data{
                 &:hover{
@@ -28,7 +28,6 @@
                 .other-rows{
                     .row-item{
                         text-align:right;
-                        padding-right:30px;
                     }
                 }
                 
