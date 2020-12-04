@@ -38,9 +38,20 @@ function App() {
 
     axios.get(`https://cors-anywhere.herokuapp.com/https://covid-api.mmediagroup.fr/v1/cases`)
       .then(res => {
-        const data = res.data.response
+        const data = res.data
         const formattedData = []
         console.log(res)
+        for(const country in data){
+          formattedData.push(
+            {
+              locationName: data[country].All.country,
+              totalCases: commafyNum(data[country].All.confirmed),
+              totalDeaths: commafyNum(data[country].All.deaths),
+              population: data[country].All.population,
+              casesPerMil: 
+            }
+          )
+        }
         for( let i=0; i<data.length; i++ ){
           const willNotBeSaved = (data[i].country === 'All' || data[i].country === 'Diamond-Princess-' || data[i].country === 'North-America' || data[i].country === 'Europe' || data[i].country === 'South-America' || data[i].country === 'Africa' || data[i].country === 'Asia')
           if(willNotBeSaved){
