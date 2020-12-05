@@ -20,11 +20,9 @@ const Graph = ({data}) => {
           theme={V.VictoryTheme.material}
           scale={{ x: 'time'}}
           minDomain={{y:0}}
-          containerComponent={<VictoryZoomVoronoiContainer
+          containerComponent={<V.VictoryVoronoiContainer
             clipContainerComponent={<V.VictoryClipContainer clipPadding={{top: 10, right: 10}}/>}
             voronoiDimension = 'x'
-            minimumZoom={{x:1000000000,y:200}}
-            zoomDimension='x'
           />}
           
         >
@@ -114,7 +112,7 @@ const Graph = ({data}) => {
           theme={V.VictoryTheme.material}
           scale={{ x: 'time'}}
           minDomain={{y:0}}
-          containerComponent={<VictoryZoomVoronoiContainer
+          containerComponent={<V.VictoryVoronoiContainer
             onActivated={(points, props) => {
               if (points.length ===2){
                 if (points[0].y > points[1].y){

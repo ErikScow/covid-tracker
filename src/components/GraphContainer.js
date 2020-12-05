@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import axios from 'axios'
 import { Context } from '../contexts/context'
 
@@ -34,11 +34,14 @@ const GraphContainer = (props) => {
                         console.log(res)
                         const formattedDataCases = []
                         for(const date in caseData){
-                            formattedDataCases.push({
-                                locationName: props.locationName,
-                                x: new Date(parseInt(date.slice(0,4)), parseInt(date.slice(5,7))-1, parseInt(date.slice(8))),
-                                y: caseData[date]
-                            })
+                            if(parseInt(date.slice(8))%3===0){
+                                formattedDataCases.push({
+                                    locationName: props.locationName,
+                                    x: new Date(parseInt(date.slice(0,4)), parseInt(date.slice(5,7))-1, parseInt(date.slice(8))),
+                                    y: caseData[date]
+                                })
+                            }
+                            
                         }
                         setCountryCasesData(formattedDataCases)
                         let countryData
@@ -64,11 +67,14 @@ const GraphContainer = (props) => {
                         console.log(res)
                         const formattedDataDeaths = []
                         for(const date in deathsData){
-                            formattedDataDeaths.push({
-                                locationName: props.locationName,
-                                x: new Date(parseInt(date.slice(0,4)), parseInt(date.slice(5,7))-1, parseInt(date.slice(8))),
-                                y: deathsData[date]
-                            })
+                            if (parseInt(date.slice(8))%3===0){
+                                formattedDataDeaths.push({
+                                    locationName: props.locationName,
+                                    x: new Date(parseInt(date.slice(0,4)), parseInt(date.slice(5,7))-1, parseInt(date.slice(8))),
+                                    y: deathsData[date]
+                                }) 
+                            }
+                            
                         }
                         setCountryDeathsData(formattedDataDeaths)
                         let countryData
@@ -101,16 +107,19 @@ const GraphContainer = (props) => {
                         const formattedDataDeaths = []
                         for( let i=0; i<data.length;i++){
                             const dateString = data[i].date.toString()
-                            formattedDataCases.push({
-                                locationName: convertStateName(data[i].state),
-                                x: new Date(parseInt(dateString.slice(0,4)), parseInt(dateString.slice(4,6))-1, parseInt(dateString.slice(6))),
-                                y: data[i].positive
-                            })
-                            formattedDataDeaths.push({
-                                locationName: convertStateName(data[i].state),
-                                x: new Date(parseInt(dateString.slice(0,4)), parseInt(dateString.slice(4,6))-1, parseInt(dateString.slice(6))),
-                                y: data[i].death
-                            })
+                            if (parseInt(dateString.slice(6))%3===0){
+                                formattedDataCases.push({
+                                    locationName: convertStateName(data[i].state),
+                                    x: new Date(parseInt(dateString.slice(0,4)), parseInt(dateString.slice(4,6))-1, parseInt(dateString.slice(6))),
+                                    y: data[i].positive
+                                })
+                                formattedDataDeaths.push({
+                                    locationName: convertStateName(data[i].state),
+                                    x: new Date(parseInt(dateString.slice(0,4)), parseInt(dateString.slice(4,6))-1, parseInt(dateString.slice(6))),
+                                    y: data[i].death
+                                })
+                            }
+                            
                         }
                         setCurrentGraphData({
                             cases: formattedDataCases,
@@ -130,7 +139,7 @@ const GraphContainer = (props) => {
         }
     },[])
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setCurrentGraphData({
             cases:countryCasesData,
             deaths:countryDeathsData
