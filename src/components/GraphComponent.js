@@ -1,13 +1,109 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as V from 'victory'
-import { abbreviateNum } from '../utils/numModifiers'
+import { abbreviateNum, commafyNum as commafy } from '../utils/numModifiers'
 
 const VictoryZoomVoronoiContainer = V.createContainer('zoom', 'voronoi')
 
-const Graph = (props) => {
+const Graph = ({data}) => {
+    console.log(data)
 
     const [orientationOne, setOrientationOne] = useState('top')
     const [orientationTwo, setOrientationTwo] = useState('bottom')
+
+    if (!data.comparisonSet){
+      return(
+        <div className='chart-container'>
+        <V.VictoryChart 
+          width={800}
+          height={350}
+          padding={{left:75, bottom:60, right: 50}}
+          theme={V.VictoryTheme.material}
+          scale={{ x: 'time'}}
+          minDomain={{y:0}}
+          containerComponent={<VictoryZoomVoronoiContainer
+            clipContainerComponent={<V.VictoryClipContainer clipPadding={{top: 10, right: 10}}/>}
+            voronoiDimension = 'x'
+            minimumZoom={{x:1000000000,y:200}}
+            zoomDimension='x'
+          />}
+          
+        >
+
+        <V.VictoryAxis
+          tickCount={8}
+          style={{
+            ticks:{
+              size: 10
+            },
+            tickLabels:{
+              fontSize: 15,
+              padding: 3,
+            },
+            grid: {
+              strokeDasharray: 0
+            }
+          }}
+          tickLabelComponent={<V.VictoryLabel
+            angle={-45}
+            transform= 'translate(-20 15)'
+          />}
+        />
+
+        <V.VictoryAxis
+          dependentAxis
+          tickCount={8}
+          style={{
+            ticks:{
+              size: 10
+            },
+            tickLabels:{
+              fontSize: 15, 
+              padding: 3
+            },
+            grid: {
+              strokeDasharray: 0
+            }
+          }}
+          tickFormat={abbreviateNum}
+        />
+        
+        <V.VictoryGroup
+          data={data.currentSet}
+          labels={({ datum }) => `${datum.x.getMonth() + 1}/${datum.x.getDate()}/${datum.x.getFullYear()}\n${datum.locationName}: ${commafy(datum.y)}`}
+          labelComponent={
+            <V.VictoryTooltip
+            flyoutStyle={{
+              stroke:'4bc0c0',
+                strokeWidth: '2',
+              fill: 'black',
+              fillOpacity: '0.7'
+            }}
+            style={{
+              textAnchor: 'left',
+              fontSize: 12,
+              fill: 'lightgrey'
+            }}
+            orientation={'bottom'}
+            pointerLength={0}
+            constrainToVisibleArea
+            />
+          }
+          style={{
+            data:{ fill: '#4bc0c0'}
+          }}
+        >
+          <V.VictoryLine
+            style={{
+              data:{ strokeWidth: 3 }
+            }}
+            interpolation='natural'
+          />
+        </V.VictoryGroup>
+        
+      </V.VictoryChart>
+      </div>
+    )
+    }
 
     return(
         <div className='chart-container'>
@@ -30,6 +126,7 @@ const Graph = (props) => {
             }}
             voronoiDimension = 'x'
             minimumZoom={{x:1000000000,y:200}}
+            downsample={150}
           />}
           
         >
@@ -74,7 +171,7 @@ const Graph = (props) => {
         
         <V.VictoryGroup
           data={data.set1}
-          labels={({ datum }) => `${datum.x.getMonth() + 1}/${datum.x.getDate()}/${datum.x.getFullYear()}\n${datum.locationName}: ${datum.y}`}
+          labels={({ datum }) => `${datum.x.getMonth() + 1}/${datum.x.getDate()}/${datum.x.getFullYear()}\n${datum.locationName}: ${commafy(datum.y)}`}
           labelComponent={
             <V.VictoryTooltip
             flyoutStyle={{
@@ -103,12 +200,11 @@ const Graph = (props) => {
             }}
             interpolation='natural'
           />
-          <V.VictoryScatter/>
         </V.VictoryGroup>
 
         <V.VictoryGroup
           data={data.set2}
-          labels={({ datum }) => `${datum.x.getMonth() + 1}/${datum.x.getDate()}/${datum.x.getFullYear()}\n${datum.locationName}: ${datum.y}`}
+          labels={({ datum }) => `${datum.x.getMonth() + 1}/${datum.x.getDate()}/${datum.x.getFullYear()}\n${datum.locationName}: ${commafy(datum.y)}`}
           labelComponent={
             <V.VictoryTooltip
               flyoutStyle={{
@@ -137,7 +233,6 @@ const Graph = (props) => {
             }}
             interpolation='natural'
           />
-          <V.VictoryScatter/>
         </V.VictoryGroup>
         
       </V.VictoryChart>

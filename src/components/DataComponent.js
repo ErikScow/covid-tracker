@@ -31,6 +31,7 @@ const DataComponent = (props) => {
             <GraphContainer 
                 abbreviation={props.abbreviation} 
                 locationType={props.locationType}
+                locationName={props.locationName}
             />
         </div>
         )

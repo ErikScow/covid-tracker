@@ -2,14 +2,23 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { Context } from '../contexts/context'
 
+import { convertStateName } from '../utils/stringModifiers'
+
 import GraphComponent from './GraphComponent'
 
 const GraphContainer = (props) => {
-    const { graphDataStates, graphDataCountries } = useContext(Context)
+    const { graphDataStates, graphDataCountries, clipBoard } = useContext(Context)
     const [graphStatesStore, setGraphStatesStore] = graphDataStates
     const [graphCountriesStore, setGraphCountriesStore] = graphDataCountries
+    const [clipBoardData, setClipBoardData] = clipBoard
 
-    const [currentGraphData, setCurrentGraphData] = useState({})
+    const [clipBoardButton, setClipBoardButton] = useState('Compare Clipboard')
+    const [clipBoardStatus, setClipBoardStatus] = useState(false)
+
+    const [currentGraphData, setCurrentGraphData] = useState({
+        cases:[{locationName: 'location_name', x: new Date(), y:0}],
+        deaths: [{locationName: 'location_name', x: new Date(), y:0}]
+    })
 
     useEffect(() => {
         if (props.locationType === 'country'){
@@ -18,14 +27,68 @@ const GraphContainer = (props) => {
             } else {
                 axios.get(`https://cors-anywhere.herokuapp.com/https://covid-api.mmediagroup.fr/v1/history?ab=${props.abbreviation}&status=Confirmed`)
                     .then(res => {
+                        const caseData = res.data.All.dates
                         console.log(res)
+                        const formattedDataCases = []
+                        for(const date in caseData){
+                            formattedDataCases.push({
+                                locationName: props.locationName,
+                                x: new Date(parseInt(date.slice(0,4)), parseInt(date.slice(5,7))-1, parseInt(date.slice(8))),
+                                y: caseData[date]
+                            })
+                            console.log(formattedDataCases)
+                        }
+                        setCurrentGraphData({
+                            ...currentGraphData, 
+                            cases: formattedDataCases,
+                        })
+                        let countryData
+                        if (props.abbreviation in graphCountriesStore){
+                            let newGraphCountriesStore = graphCountriesStore
+                            let item = newGraphCountriesStore[props.abbreviation]
+                            item.cases = formattedDataCases
+                            newGraphCountriesStore = {...newGraphCountriesStore, item}
+                            setGraphCountriesStore(newGraphCountriesStore)
+                        } else {
+                            countryData = {cases: formattedDataCases}
+                            let newGraphCountriesStore = graphCountriesStore
+                            newGraphCountriesStore[props.abbreviation] = countryData
+                            setGraphCountriesStore(newGraphCountriesStore)
+                        }
                     })
                     .catch(err => {
                         console.error(err)
                     })
                 axios.get(`https://cors-anywhere.herokuapp.com/https://covid-api.mmediagroup.fr/v1/history?ab=${props.abbreviation}&status=Deaths`)
                     .then(res => {
+                        const deathsData = res.data.All.dates
                         console.log(res)
+                        const formattedDataDeaths = []
+                        for(const date in deathsData){
+                            formattedDataDeaths.push({
+                                locationName: props.locationName,
+                                x: new Date(parseInt(date.slice(0,4)), parseInt(date.slice(5,7))-1, parseInt(date.slice(8))),
+                                y: deathsData[date]
+                            })
+                            console.log(formattedDataDeaths)
+                        }
+                        setCurrentGraphData({
+                            ...currentGraphData, 
+                            deaths: formattedDataDeaths,
+                        })
+                        let countryData
+                        if (props.abbreviation in graphCountriesStore){
+                            let newGraphCountriesStore = graphCountriesStore
+                            let item = newGraphCountriesStore[props.abbreviation]
+                            item.cases = formattedDataDeaths
+                            newGraphCountriesStore = {...newGraphCountriesStore, item}
+                            setGraphCountriesStore(newGraphCountriesStore)
+                        } else {
+                            countryData = {cases: formattedDataDeaths}
+                            let newGraphCountriesStore = graphCountriesStore
+                            newGraphCountriesStore[props.abbreviation] = countryData
+                            setGraphCountriesStore(newGraphCountriesStore)
+                        }
                     })
                     .catch(err => {
                         console.error(err)
@@ -38,6 +101,32 @@ const GraphContainer = (props) => {
                 axios.get(`https://api.covidtracking.com/v1/states/${props.abbreviation}/daily.json`)
                     .then(res => {
                         console.log(res)
+                        const data = res.data
+                        const formattedDataCases = []
+                        const formattedDataDeaths = []
+                        for( let i=0; i<data.length;i++){
+                            const dateString = data[i].date.toString()
+                            formattedDataCases.push({
+                                locationName: convertStateName(data[i].state),
+                                x: new Date(parseInt(dateString.slice(0,4)), parseInt(dateString.slice(4,6))-1, parseInt(dateString.slice(6))),
+                                y: data[i].positive
+                            })
+                            formattedDataDeaths.push({
+                                locationName: convertStateName(data[i].state),
+                                x: new Date(parseInt(dateString.slice(0,4)), parseInt(dateString.slice(4,6))-1, parseInt(dateString.slice(6))),
+                                y: data[i].death
+                            })
+                        }
+                        setCurrentGraphData({
+                            cases: formattedDataCases,
+                            deaths: formattedDataDeaths
+                        })
+                        let newGraphStatesStore = graphStatesStore
+                        newGraphStatesStore[props.abbreviation] = {
+                            cases: formattedDataCases,
+                            deaths: formattedDataDeaths
+                        }
+                        setGraphStatesStore(newGraphStatesStore)
                     })
                     .catch(err => {
                         console.error(err)
@@ -46,10 +135,34 @@ const GraphContainer = (props) => {
         }
     },[])
 
+    const toggleClipBoard = () => {
+        if(clipBoardStatus){
+            setClipBoardStatus(false)
+            setClipBoardButton('Compare Clipboard')
+        } else {
+            setClipBoardStatus(true)
+            setClipBoardButton('Hide Clipboard')
+        }
+    }
+
+    const saveToClipBoard = () => {
+        setClipBoardData(currentGraphData)
+    }
+
+    if(!clipBoardStatus){
+        return(
+            <div className='graph-outer-container'>
+                <button onClick={saveToClipBoard}>Save To Clipboard</button>
+                <button onClick={toggleClipBoard}>{clipBoardButton}</button>
+                <GraphComponent data={{currentSet: currentGraphData.cases}}/>
+            </div>
+        )
+    }
+
     return(
         <div className='graph-outer-container'>
-            
-            <GraphComponent/>
+            <button onClick={toggleClipBoard}>{clipBoardButton}</button>
+            <GraphComponent data={{currentSet: currentGraphData.cases, comparisonSet: clipBoardData.cases}}/>
         </div>
     )
 }

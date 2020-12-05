@@ -30,7 +30,7 @@ function App() {
 
   const [graphDataStates, setGraphDataStates] = useState([])
   const [graphDataCountries, setGraphDataCountries] = useState([])
-  const [clipBoard, setClipBoard] = useState([])
+  const [clipBoard, setClipBoard] = useState({})
 
   const [currentLocationType, setCurrentLocationType] = useState('countries')
 

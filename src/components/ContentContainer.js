@@ -43,7 +43,7 @@ const ContentContainer = (props) => {
             
             {displayData.map((location,index) => {
                 return <DataComponent 
-                        key={index} 
+                        key={location.locationName} 
                         locationName={location.locationName} 
                         locationType={location.locationType}
                         totalCases={location.totalCases}
