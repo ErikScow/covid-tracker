@@ -110,23 +110,25 @@ const Graph = ({data}) => {
         <V.VictoryChart 
           width={800}
           height={350}
-          padding={{left:50, bottom:60, right: 50}}
+          padding={{left:75, bottom:60, right: 50}}
           theme={V.VictoryTheme.material}
           scale={{ x: 'time'}}
           minDomain={{y:0}}
           containerComponent={<VictoryZoomVoronoiContainer
             onActivated={(points, props) => {
-              if (points[0].y > points[2].y){
+              if (points.length ===2){
+                if (points[0].y > points[1].y){
                 setOrientationOne('top')
                 setOrientationTwo('bottom')
-              } else {
-                setOrientationOne('bottom')
-                setOrientationTwo('top')
+                } else {
+                  setOrientationOne('bottom')
+                  setOrientationTwo('top')
+                }
               }
+              
             }}
             voronoiDimension = 'x'
             minimumZoom={{x:1000000000,y:200}}
-            downsample={150}
           />}
           
         >
@@ -170,7 +172,7 @@ const Graph = ({data}) => {
         />
         
         <V.VictoryGroup
-          data={data.set1}
+          data={data.currentSet}
           labels={({ datum }) => `${datum.x.getMonth() + 1}/${datum.x.getDate()}/${datum.x.getFullYear()}\n${datum.locationName}: ${commafy(datum.y)}`}
           labelComponent={
             <V.VictoryTooltip
@@ -203,7 +205,7 @@ const Graph = ({data}) => {
         </V.VictoryGroup>
 
         <V.VictoryGroup
-          data={data.set2}
+          data={data.comparisonSet}
           labels={({ datum }) => `${datum.x.getMonth() + 1}/${datum.x.getDate()}/${datum.x.getFullYear()}\n${datum.locationName}: ${commafy(datum.y)}`}
           labelComponent={
             <V.VictoryTooltip

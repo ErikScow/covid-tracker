@@ -16,9 +16,12 @@ const GraphContainer = (props) => {
     const [clipBoardStatus, setClipBoardStatus] = useState(false)
 
     const [currentGraphData, setCurrentGraphData] = useState({
-        cases:[{locationName: 'location_name', x: new Date(), y:0}],
-        deaths: [{locationName: 'location_name', x: new Date(), y:0}]
+        cases:[{locationName: '', x: new Date(), y:0}],
+        deaths: [{locationName: '', x: new Date(), y:0}]
     })
+
+    const [countryCasesData, setCountryCasesData] = useState([])
+    const [countryDeathsData, setCountryDeathsData] = useState([])
 
     useEffect(() => {
         if (props.locationType === 'country'){
@@ -36,12 +39,8 @@ const GraphContainer = (props) => {
                                 x: new Date(parseInt(date.slice(0,4)), parseInt(date.slice(5,7))-1, parseInt(date.slice(8))),
                                 y: caseData[date]
                             })
-                            console.log(formattedDataCases)
                         }
-                        setCurrentGraphData({
-                            ...currentGraphData, 
-                            cases: formattedDataCases,
-                        })
+                        setCountryCasesData(formattedDataCases)
                         let countryData
                         if (props.abbreviation in graphCountriesStore){
                             let newGraphCountriesStore = graphCountriesStore
@@ -70,21 +69,17 @@ const GraphContainer = (props) => {
                                 x: new Date(parseInt(date.slice(0,4)), parseInt(date.slice(5,7))-1, parseInt(date.slice(8))),
                                 y: deathsData[date]
                             })
-                            console.log(formattedDataDeaths)
                         }
-                        setCurrentGraphData({
-                            ...currentGraphData, 
-                            deaths: formattedDataDeaths,
-                        })
+                        setCountryDeathsData(formattedDataDeaths)
                         let countryData
                         if (props.abbreviation in graphCountriesStore){
                             let newGraphCountriesStore = graphCountriesStore
                             let item = newGraphCountriesStore[props.abbreviation]
-                            item.cases = formattedDataDeaths
+                            item.deaths = formattedDataDeaths
                             newGraphCountriesStore = {...newGraphCountriesStore, item}
                             setGraphCountriesStore(newGraphCountriesStore)
                         } else {
-                            countryData = {cases: formattedDataDeaths}
+                            countryData = {deaths: formattedDataDeaths}
                             let newGraphCountriesStore = graphCountriesStore
                             newGraphCountriesStore[props.abbreviation] = countryData
                             setGraphCountriesStore(newGraphCountriesStore)
@@ -134,6 +129,13 @@ const GraphContainer = (props) => {
             }
         }
     },[])
+
+    useEffect(() => {
+        setCurrentGraphData({
+            cases:countryCasesData,
+            deaths:countryDeathsData
+        })
+    }, [countryCasesData, countryDeathsData])
 
     const toggleClipBoard = () => {
         if(clipBoardStatus){

@@ -30,7 +30,10 @@ function App() {
 
   const [graphDataStates, setGraphDataStates] = useState([])
   const [graphDataCountries, setGraphDataCountries] = useState([])
-  const [clipBoard, setClipBoard] = useState({})
+  const [clipBoard, setClipBoard] = useState({
+    cases:[{locationName: '', x: new Date(), y:0}],
+    deaths: [{locationName: '', x: new Date(), y:0}]
+  })
 
   const [currentLocationType, setCurrentLocationType] = useState('countries')
 

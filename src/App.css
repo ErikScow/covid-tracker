@@ -115,5 +115,8 @@ nav .link-container {
   left: 2.5%;
   width: 15%;
 }
+.side-controlls .clipboard {
+  color: #ff6384;
+}
 
 /*# sourceMappingURL=App.css.map */
