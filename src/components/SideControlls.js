@@ -16,6 +16,7 @@ const SideControlls = () => {
         } else {
             setLocationType('countries')
         }
+        setFilterStr('')
     }
 
     const setFilterString = (e) => {
@@ -27,6 +28,7 @@ const SideControlls = () => {
             <input 
                 type="text"
                 placeholder="Search"
+                value={filterStr}
                 onChange={setFilterString}
             />
             <button onClick={toggleLocationType}>Location Type</button>
