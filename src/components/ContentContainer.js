@@ -7,21 +7,40 @@ import DataComponent from './DataComponent'
 const ContentContainer = (props) => {
     
 
-    const { countriesData, statesData, currentLocationType } = useContext(Context)
-    const [countriesDisplay, setCountriesDisplay] = countriesData
-    const [statesDisplay, setStatesDisplay] = statesData
-    const [locationType, setLocationType] = currentLocationType
+    const { countriesData, statesData, currentLocationType, filterString } = useContext(Context)
+    const [countries, setCountries] = countriesData
+    const [states, setStates] = statesData
 
-    const [displayData, setDisplayData] = useState(countriesDisplay)
+    //modifiers for display data (controlled by SideControlls.js)
+    const [locationType, setLocationType] = currentLocationType
+    const [filterStr, setFilterStr] = filterString
+
+    //modified data to display
+    const [dataSet, setDataSet] = useState(countries)
+    const [searched, setSearched] = useState(dataSet)
+
+    useEffect(() => {
+        setSearched(dataSet)
+    }, [dataSet])
+    
 
     useEffect(() => {
         if (locationType === 'countries'){
-            setDisplayData(countriesDisplay)
+            setDataSet(countries)
         } else {
-            setDisplayData(statesDisplay)
+            setDataSet(states)
         }
-    }, [locationType, countriesDisplay, statesDisplay])
+    }, [locationType, countries, states])
 
+
+    useEffect(() => {
+        console.log(filterStr)
+        const filteredData = dataSet.filter(location => {
+            return location.locationName.toLowerCase().includes(filterStr.toLowerCase())
+        })
+        console.log(filteredData)
+        setSearched(filteredData)
+    }, [filterStr])
     
 
     return(
@@ -41,7 +60,7 @@ const ContentContainer = (props) => {
                 </div>
             </div>
             
-            {displayData.map((location,index) => {
+            {searched.map((location,index) => {
                 return <DataComponent 
                         key={location.locationName} 
                         locationName={location.locationName} 

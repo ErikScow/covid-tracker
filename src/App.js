@@ -36,6 +36,7 @@ function App() {
   })
 
   const [currentLocationType, setCurrentLocationType] = useState('countries')
+  const [filterString, setFilterString] = useState('')
 
   useEffect(() => {
 
@@ -174,6 +175,7 @@ function App() {
         graphDataCountries: [graphDataCountries, setGraphDataCountries],
         clipBoard: [clipBoard, setClipBoard],
         currentLocationType: [currentLocationType, setCurrentLocationType],
+        filterString: [filterString, setFilterString],
       }}>
         <div className="App">
           <Nav/>

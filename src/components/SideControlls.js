@@ -4,8 +4,10 @@ import { Context } from '../contexts/context'
 
 const SideControlls = () => {
 
-    const { currentLocationType, clipBoard} = useContext(Context)
+    const { currentLocationType, clipBoard, filterString } = useContext(Context)
     const [locationType, setLocationType] = currentLocationType
+    const [filterStr, setFilterStr] = filterString
+
     const [clipBoardData, setClipBoardData] = clipBoard
 
     const toggleLocationType = () => {
@@ -16,10 +18,20 @@ const SideControlls = () => {
         }
     }
 
+    const setFilterString = (e) => {
+        setFilterStr(e.target.value)
+    }
+
     return(
         <div className="side-controlls">
+            <input 
+                type="text"
+                placeholder="Search"
+                onChange={setFilterString}
+            />
             <button onClick={toggleLocationType}>Location Type</button>
             <p>Clipboard: <span className='clipboard'>{clipBoardData.cases[0].locationName}</span></p>
+            
         </div>
     )
 }
