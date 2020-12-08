@@ -11,10 +11,6 @@ import axios from 'axios'
 import { Context } from './contexts/context'
 
 import {
-  abbreviateNum,
-  commafyNum,
-} from './utils/numModifiers'
-import {
   convertStateName
 } from './utils/stringModifiers'
 
@@ -37,6 +33,7 @@ function App() {
 
   const [currentLocationType, setCurrentLocationType] = useState('countries')
   const [filterString, setFilterString] = useState('')
+  const [sortMethod, setSortMethod] = useState(['low-high','alphabetical'])
 
   useEffect(() => {
 
@@ -53,11 +50,11 @@ function App() {
             {
               locationName: country,
               locationType: 'country',
-              totalCases: commafyNum(data[country].All.confirmed),
-              totalDeaths: commafyNum(data[country].All.deaths),
+              totalCases: data[country].All.confirmed,
+              totalDeaths: data[country].All.deaths,
               population: data[country].All.population,
-              casesPerMil: abbreviateNum((data[country].All.confirmed / data[country].All.population) * 1000000),
-              deathsPerMil: abbreviateNum((data[country].All.deaths / data[country].All.population) * 1000000),
+              casesPerMil: (data[country].All.confirmed / data[country].All.population) * 1000000,
+              deathsPerMil: (data[country].All.deaths / data[country].All.population) * 1000000,
               deathRate: ((data[country].All.deaths/data[country].All.confirmed)*100).toFixed(2),
               abbreviation: data[country].All.abbreviation
             }
@@ -145,11 +142,11 @@ function App() {
             {
               locationName: convertStateName(data[i].state),
               locationType: 'state',
-              totalCases: commafyNum(data[i].positive),
-              totalDeaths: commafyNum(data[i].death),
+              totalCases: data[i].positive,
+              totalDeaths: data[i].death,
               population: statePopulation,
-              casesPerMil: abbreviateNum((data[i].positive/statePopulation)*1000000),
-              deathsPerMil: abbreviateNum((data[i].death/statePopulation)*1000000),
+              casesPerMil: (data[i].positive/statePopulation)*1000000,
+              deathsPerMil: (data[i].death/statePopulation)*1000000,
               deathRate:((data[i].death/data[i].positive)*100).toFixed(2),
               abbreviation: data[i].state.toLowerCase()
             }
@@ -176,6 +173,7 @@ function App() {
         clipBoard: [clipBoard, setClipBoard],
         currentLocationType: [currentLocationType, setCurrentLocationType],
         filterString: [filterString, setFilterString],
+        sortMethod: [sortMethod, setSortMethod],
       }}>
         <div className="App">
           <Nav/>
