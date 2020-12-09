@@ -44,11 +44,9 @@ const ContentContainer = (props) => {
 
 
     useEffect(() => {
-        console.log(filterStr)
         const filteredData = dataSet.filter(location => {
             return location.locationName.toLowerCase().includes(filterStr.toLowerCase())
         })
-        console.log(filteredData)
         setSearched(filteredData)
     }, [filterStr])
     
@@ -82,16 +80,11 @@ const ContentContainer = (props) => {
             setSearched(searched.sort((a, b) => {
                 return a.deathRate - b.deathRate
             }))
-            console.log('state set')
         }
         if(sort[0] === 'high-low'){
             setSearched(searched.reverse())
         }
         
-    },[sort])
-
-    useEffect(() => {
-        console.log(sort)
     },[sort])
 
     return(

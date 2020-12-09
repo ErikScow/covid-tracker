@@ -41,7 +41,6 @@ function App() {
       .then(res => {
         const data = res.data
         const formattedData = []
-        console.log(res)
         for(const country in data){
           if (country.length > 20 || country === "Global" || !data[country].All.abbreviation || !data[country].All.population){
             continue
@@ -131,7 +130,6 @@ function App() {
           'WY': 578759
           }
         const formattedData = []
-        console.log(res)
         for( let i=0; i<data.length; i++ ){
           const willNotBeSaved = (data[i].state === 'GU' || data[i].state === 'PR' || data[i].state === 'MP' || data[i].state === 'AS' || data[i].state === 'DC' || data[i].state === 'VI')
           if(willNotBeSaved){

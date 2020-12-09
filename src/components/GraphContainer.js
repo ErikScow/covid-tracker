@@ -23,6 +23,8 @@ const GraphContainer = (props) => {
     const [countryCasesData, setCountryCasesData] = useState([{locationName: '', x: new Date(), y:0}])
     const [countryDeathsData, setCountryDeathsData] = useState([{locationName: '', x: new Date(), y:0}])
 
+    const [graphDataType, setGraphDataType] = useState('cases')
+
     useEffect(() => {
         if (props.locationType === 'country'){
             if(props.abbreviation in graphCountriesStore){
@@ -31,7 +33,6 @@ const GraphContainer = (props) => {
                 axios.get(`https://cors-anywhere.herokuapp.com/https://covid-api.mmediagroup.fr/v1/history?ab=${props.abbreviation}&status=Confirmed`)
                     .then(res => {
                         const caseData = res.data.All.dates
-                        console.log(res)
                         const formattedDataCases = []
                         for(const date in caseData){
                             if(parseInt(date.slice(8))%3===0){
@@ -64,7 +65,6 @@ const GraphContainer = (props) => {
                 axios.get(`https://cors-anywhere.herokuapp.com/https://covid-api.mmediagroup.fr/v1/history?ab=${props.abbreviation}&status=Deaths`)
                     .then(res => {
                         const deathsData = res.data.All.dates
-                        console.log(res)
                         const formattedDataDeaths = []
                         for(const date in deathsData){
                             if (parseInt(date.slice(8))%3===0){
@@ -101,7 +101,6 @@ const GraphContainer = (props) => {
             } else {
                 axios.get(`https://api.covidtracking.com/v1/states/${props.abbreviation}/daily.json`)
                     .then(res => {
-                        console.log(res)
                         const data = res.data
                         const formattedDataCases = []
                         const formattedDataDeaths = []
@@ -160,22 +159,63 @@ const GraphContainer = (props) => {
         setClipBoardData(currentGraphData)
     }
 
-    if(!clipBoardStatus){
+    const changeDataType = (e) => {
+        setGraphDataType(e.target.value)
+    }
+
+    if(graphDataType === 'cases'){
+        if(!clipBoardStatus){
+            return(
+                <div className='graph-outer-container'>
+                    <select onChange={changeDataType}>
+                        <option value='cases'>Cases</option>
+                        <option value='deaths'>Deaths</option>
+                    </select>
+                    <button onClick={saveToClipBoard}>Save To Clipboard</button>
+                    <button onClick={toggleClipBoard}>{clipBoardButton}</button>
+                    <GraphComponent data={{currentSet: currentGraphData.cases}}/>
+                </div>
+            )
+        }
+
         return(
             <div className='graph-outer-container'>
-                <button onClick={saveToClipBoard}>Save To Clipboard</button>
+                <select onChange={changeDataType}>
+                        <option value='cases'>Cases</option>
+                        <option value='deaths'>Deaths</option>
+                    </select>
                 <button onClick={toggleClipBoard}>{clipBoardButton}</button>
-                <GraphComponent data={{currentSet: currentGraphData.cases}}/>
+                <GraphComponent data={{currentSet: currentGraphData.cases, comparisonSet: clipBoardData.cases}}/>
+            </div>
+        )
+    } else if(graphDataType === 'deaths'){
+        if(!clipBoardStatus){
+            return(
+                <div className='graph-outer-container'>
+                    <select onChange={changeDataType}>
+                        <option value='cases'>Cases</option>
+                        <option value='deaths'>Deaths</option>
+                    </select>
+                    <button onClick={saveToClipBoard}>Save To Clipboard</button>
+                    <button onClick={toggleClipBoard}>{clipBoardButton}</button>
+                    <GraphComponent data={{currentSet: currentGraphData.deaths}}/>
+                </div>
+            )
+        }
+
+        return(
+            <div className='graph-outer-container'>
+                <select onChange={changeDataType}>
+                        <option value='cases'>Cases</option>
+                        <option value='deaths'>Deaths</option>
+                    </select>
+                <button onClick={toggleClipBoard}>{clipBoardButton}</button>
+                <GraphComponent data={{currentSet: currentGraphData.deaths, comparisonSet: clipBoardData.deaths}}/>
             </div>
         )
     }
 
-    return(
-        <div className='graph-outer-container'>
-            <button onClick={toggleClipBoard}>{clipBoardButton}</button>
-            <GraphComponent data={{currentSet: currentGraphData.cases, comparisonSet: clipBoardData.cases}}/>
-        </div>
-    )
+    
 }
 
 export default GraphContainer

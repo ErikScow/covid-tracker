@@ -6,7 +6,6 @@ const DataComponent = (props) => {
     const [graphOpen, setGraphOpen] = useState(false)
 
     const toggleGraph = () => {
-        console.log(props.graphOpen)
         if(props.graphOpen){
             props.setGraphOpen(false)
         } else {
