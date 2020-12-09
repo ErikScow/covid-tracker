@@ -53,7 +53,6 @@ const ContentContainer = (props) => {
     }, [filterStr])
     
     useEffect(() => {
-        console.log('useeffect reached')
         if(sort[1] === 'alphabetical'){
             setSearched(searched.sort((a, b) => {
                 return a.locationName.localeCompare(b.locationName)

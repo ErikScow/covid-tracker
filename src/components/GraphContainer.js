@@ -20,8 +20,8 @@ const GraphContainer = (props) => {
         deaths: [{locationName: '', x: new Date(), y:0}]
     })
 
-    const [countryCasesData, setCountryCasesData] = useState([])
-    const [countryDeathsData, setCountryDeathsData] = useState([])
+    const [countryCasesData, setCountryCasesData] = useState([{locationName: '', x: new Date(), y:0}])
+    const [countryDeathsData, setCountryDeathsData] = useState([{locationName: '', x: new Date(), y:0}])
 
     useEffect(() => {
         if (props.locationType === 'country'){

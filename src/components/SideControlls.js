@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import { Context } from '../contexts/context'
 
 
@@ -13,6 +13,11 @@ const SideControlls = () => {
 
     const [sortOrder, setSortOrder] = useState('low-high')
     const [sortBy, setSortBy] = useState('alphabetical')
+
+    const [clipBoardDisplay, setClipBoardDisplay] = useState({
+        cases:[{locationName: '', x: new Date(), y:0}],
+        deaths: [{locationName: '', x: new Date(), y:0}]
+      })
 
     const selectLocationType = (e) => {
         setLocationType(e.target.value)
@@ -34,6 +39,10 @@ const SideControlls = () => {
     useEffect(() => {
         setSort([sortOrder, sortBy])
     }, [...sort, sortBy, sortOrder])
+
+    useEffect(() => {
+        setClipBoardDisplay(clipBoardData)
+    },[clipBoardData])
 
     return(
         <div className="side-controlls">
@@ -63,7 +72,7 @@ const SideControlls = () => {
                 <option value='high-low'>High to Low</option>
             </select>
         
-            <p>Clipboard: <span className='clipboard'>{clipBoardData.cases[0].locationName}</span></p>
+            <p>Clipboard: <span className='clipboard'>{clipBoardDisplay.cases[0].locationName}</span></p>
             
         </div>
     )
