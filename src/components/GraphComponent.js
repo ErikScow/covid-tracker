@@ -86,7 +86,7 @@ const Graph = ({data}) => {
             />
           }
           style={{
-            data:{ fill: '#4bc0c0'}
+            data:{ fill: '#40a0a0'}
           }}
         >
           <V.VictoryLine
@@ -190,7 +190,7 @@ const Graph = ({data}) => {
             />
           }
           style={{
-            data:{ fill: '#4bc0c0'}
+            data:{ fill: '#40a0a0'}
           }}
         >
           <V.VictoryLine

@@ -167,12 +167,16 @@ const GraphContainer = (props) => {
         if(!clipBoardStatus){
             return(
                 <div className='graph-outer-container'>
-                    <select onChange={changeDataType}>
-                        <option value='cases'>Cases</option>
-                        <option value='deaths'>Deaths</option>
-                    </select>
-                    <button onClick={saveToClipBoard}>Save To Clipboard</button>
-                    <button onClick={toggleClipBoard}>{clipBoardButton}</button>
+                    <div className='top-row'>
+                        <select onChange={changeDataType}>
+                            <option value='cases'>Cases</option>
+                            <option value='deaths'>Deaths</option>
+                        </select>
+                        <div className='button-container'>
+                            <button onClick={saveToClipBoard}>Save To Clipboard</button>
+                            <button onClick={toggleClipBoard}>{clipBoardButton}</button>
+                        </div>
+                    </div>
                     <GraphComponent data={{currentSet: currentGraphData.cases}}/>
                 </div>
             )
@@ -180,11 +184,15 @@ const GraphContainer = (props) => {
 
         return(
             <div className='graph-outer-container'>
-                <select onChange={changeDataType}>
+                <div className='top-row'>
+                    <select onChange={changeDataType}>
                         <option value='cases'>Cases</option>
                         <option value='deaths'>Deaths</option>
                     </select>
-                <button onClick={toggleClipBoard}>{clipBoardButton}</button>
+                    <div className='button-container'>
+                        <button onClick={toggleClipBoard}>{clipBoardButton}</button>
+                    </div>
+                </div>
                 <GraphComponent data={{currentSet: currentGraphData.cases, comparisonSet: clipBoardData.cases}}/>
             </div>
         )
@@ -192,12 +200,16 @@ const GraphContainer = (props) => {
         if(!clipBoardStatus){
             return(
                 <div className='graph-outer-container'>
-                    <select onChange={changeDataType}>
-                        <option value='cases'>Cases</option>
-                        <option value='deaths'>Deaths</option>
-                    </select>
-                    <button onClick={saveToClipBoard}>Save To Clipboard</button>
-                    <button onClick={toggleClipBoard}>{clipBoardButton}</button>
+                    <div className='top-row'>
+                        <select onChange={changeDataType}>
+                            <option value='cases'>Cases</option>
+                            <option value='deaths'>Deaths</option>
+                        </select>
+                        <div className='button-container'>
+                            <button onClick={saveToClipBoard}>Save To Clipboard</button>
+                            <button onClick={toggleClipBoard}>{clipBoardButton}</button>
+                        </div>
+                    </div>
                     <GraphComponent data={{currentSet: currentGraphData.deaths}}/>
                 </div>
             )
@@ -205,11 +217,16 @@ const GraphContainer = (props) => {
 
         return(
             <div className='graph-outer-container'>
-                <select onChange={changeDataType}>
+                <div className='top-row'>
+                    <select onChange={changeDataType}>
                         <option value='cases'>Cases</option>
                         <option value='deaths'>Deaths</option>
                     </select>
-                <button onClick={toggleClipBoard}>{clipBoardButton}</button>
+                    <div className='button-container'>
+                        <button onClick={toggleClipBoard}>{clipBoardButton}</button>
+                    </div>
+                </div>
+                
                 <GraphComponent data={{currentSet: currentGraphData.deaths, comparisonSet: clipBoardData.deaths}}/>
             </div>
         )

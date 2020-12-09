@@ -16,41 +16,42 @@ const DataComponent = (props) => {
 
     if(props.graphOpen){
         return (
-        <div className='container'>
-            <div onClick={toggleGraph} className='columns data'>
-                <p className='name-row'>{props.locationName}</p>
-                <div className='other-rows'>
+        <div className='outer-container'>
+            <div onClick={toggleGraph} className='items-container'>
+                <p className='name-item'>{props.locationName}</p>
+                <div className='other-items'>
                     <p className='row-item'>{props.totalCases}</p>
                     <p className='row-item'>{props.totalDeaths}</p>
                     <p className='row-item'>{props.casesPerMil}</p>
                     <p className='row-item'>{props.deathsPerMil}</p>
                     <p className='row-item'>{props.deathRate}%</p>
                 </div>
+            </div>        
                 
-            </div>
-            <GraphContainer 
-                abbreviation={props.abbreviation} 
-                locationType={props.locationType}
-                locationName={props.locationName}
-            />
+                <GraphContainer 
+                    abbreviation={props.abbreviation} 
+                    locationType={props.locationType}
+                    locationName={props.locationName}
+                />
+            
         </div>
+        
         )
     }
 
     return(
-        <div className='container'>
-            <div onClick={toggleGraph} className='columns data'>
-                <p className='name-row'>{props.locationName}</p>
-                <div className='other-rows'>
-                    <p className='row-item'>{props.totalCases}</p>
-                    <p className='row-item'>{props.totalDeaths}</p>
-                    <p className='row-item'>{props.casesPerMil}</p>
-                    <p className='row-item'>{props.deathsPerMil}</p>
-                    <p className='row-item'>{props.deathRate}%</p>
-                </div>
-                
+    <div className='outer-container'>
+        <div onClick={toggleGraph} className='items-container'>
+            <p className='name-item'>{props.locationName}</p>
+            <div className='other-items'>
+                <p className='row-item'>{props.totalCases}</p>
+                <p className='row-item'>{props.totalDeaths}</p>
+                <p className='row-item'>{props.casesPerMil}</p>
+                <p className='row-item'>{props.deathsPerMil}</p>
+                <p className='row-item'>{props.deathRate}%</p>
             </div>
-        </div>
+        </div>  
+    </div>
     )
 }
 

@@ -90,19 +90,19 @@ const ContentContainer = (props) => {
     return(
         <div className='content-container'>
             <SideControlls/>
-            <div className='container'>
-                <div className='columns'>
-                    <p className='name-row'>Location</p>
-                    <div className='other-rows'>
+            <div className='outer-container labels'>
+                <div className='items-container column-labels'>
+                    <p className='name-item'>Location</p>
+                    <div className='other-items'>
                         <p className='row-item'>Cases</p>
                         <p className='row-item'>Deaths</p>
                         <p className='row-item'>Cases/Mil</p>
                         <p className='row-item'>Deaths/Mil</p>
                         <p className='row-item'>Death Rate</p>
                     </div>
-                   
                 </div>
             </div>
+                
             
             {searched.map((location,index) => {
                 if (graphOwner === location.locationName){

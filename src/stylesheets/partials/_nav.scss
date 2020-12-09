@@ -6,6 +6,8 @@ nav{
     display:flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    background:#afe9e9;
+    z-index: 300;
     h1{
         margin: 10px;
     }

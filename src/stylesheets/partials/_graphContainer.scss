@@ -1,0 +1,14 @@
+.graph-outer-container{
+    .top-row{
+        display:flex;
+        justify-content: space-between;
+        select{
+            text-align:center;
+        }
+        .button-container{
+            display:flex;
+            flex-flow: column nowrap;
+        }
+    }
+    
+}
