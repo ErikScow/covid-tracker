@@ -6,15 +6,16 @@ const DataComponent = (props) => {
     const [graphOpen, setGraphOpen] = useState(false)
 
     const toggleGraph = () => {
-        console.log(graphOpen)
-        if(graphOpen){
-            setGraphOpen(false)
+        console.log(props.graphOpen)
+        if(props.graphOpen){
+            props.setGraphOpen(false)
         } else {
-            setGraphOpen(true)
+            props.setGraphOpen(true)
+            props.setGraphOwner(props.locationName)
         }
     }
 
-    if(graphOpen){
+    if(props.graphOpen){
         return (
         <div className='container'>
             <div onClick={toggleGraph} className='columns data'>

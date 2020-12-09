@@ -14,12 +14,8 @@ const SideControlls = () => {
     const [sortOrder, setSortOrder] = useState('low-high')
     const [sortBy, setSortBy] = useState('alphabetical')
 
-    const toggleLocationType = () => {
-        if (locationType === 'countries'){
-            setLocationType('states')
-        } else {
-            setLocationType('countries')
-        }
+    const selectLocationType = (e) => {
+        setLocationType(e.target.value)
         setFilterStr('')
     }
 
@@ -47,7 +43,11 @@ const SideControlls = () => {
                 value={filterStr}
                 onChange={setFilterString}
             />
-            <button onClick={toggleLocationType}>Location Type</button>
+            <p>Location Type</p>
+            <select onChange={selectLocationType}> 
+                <option value='countries'>Countries</option>
+                <option value='states'>States</option>
+            </select>
             <p>Sort By</p>
             <select onChange={changeSortBy}>
                 <option value='alphabetical'>Alphabetical</option>

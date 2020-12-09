@@ -26,6 +26,9 @@ const ContentContainer = (props) => {
     const [searched, setSearched] = useState(dataSet)
     const [sorted, setSorted] = useState(dataSet)
 
+    const [graphOpen, setGraphOpen] = useState(false)
+    const [graphOwner, setGraphOwner] = useState('')
+
     useEffect(() => {
         setSearched(dataSet)
     }, [dataSet])
@@ -110,7 +113,8 @@ const ContentContainer = (props) => {
             </div>
             
             {searched.map((location,index) => {
-                return <DataComponent 
+                if (graphOwner === location.locationName){
+                    return <DataComponent 
                         key={location.locationName} 
                         locationName={location.locationName} 
                         locationType={location.locationType}
@@ -120,8 +124,26 @@ const ContentContainer = (props) => {
                         deathsPerMil={abbreviateNum(location.deathsPerMil)}
                         deathRate={location.deathRate}
                         abbreviation={location.abbreviation}
-
+                        graphOpen={graphOpen}
+                        setGraphOpen={setGraphOpen}
+                        setGraphOwner={setGraphOwner}
                         />
+                }
+                return <DataComponent 
+                key={location.locationName} 
+                locationName={location.locationName} 
+                locationType={location.locationType}
+                totalCases={commafyNum(location.totalCases)}
+                totalDeaths={commafyNum(location.totalDeaths)}
+                casesPerMil={abbreviateNum(location.casesPerMil)}
+                deathsPerMil={abbreviateNum(location.deathsPerMil)}
+                deathRate={location.deathRate}
+                abbreviation={location.abbreviation}
+                graphOpen={false}
+                setGraphOpen={setGraphOpen}
+                setGraphOwner={setGraphOwner}
+                />
+                
             })}
         </div>
     )
