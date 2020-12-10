@@ -93,7 +93,6 @@ const Graph = ({data}) => {
             style={{
               data:{ strokeWidth: 3 }
             }}
-            interpolation='natural'
           />
         </V.VictoryGroup>
         
@@ -197,7 +196,6 @@ const Graph = ({data}) => {
             style={{
               data:{ strokeWidth: 3 }
             }}
-            interpolation='natural'
           />
         </V.VictoryGroup>
 
@@ -230,7 +228,6 @@ const Graph = ({data}) => {
             style={{
               data:{ strokeWidth: 3 }
             }}
-            interpolation='natural'
           />
         </V.VictoryGroup>
         

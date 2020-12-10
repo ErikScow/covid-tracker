@@ -210,6 +210,7 @@ const GraphContainer = (props) => {
                             <button onClick={toggleClipBoard}>{clipBoardButton}</button>
                         </div>
                     </div>
+                    
                     <GraphComponent data={{currentSet: currentGraphData.deaths}}/>
                 </div>
             )
