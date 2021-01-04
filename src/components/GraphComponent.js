@@ -2,12 +2,24 @@ import React, { useState } from 'react'
 import * as V from 'victory'
 import { abbreviateNum, commafyNum as commafy } from '../utils/numModifiers'
 
-const VictoryZoomVoronoiContainer = V.createContainer('zoom', 'voronoi')
-
-const Graph = ({data}) => {
+const Graph = ({data}) => { 
+    console.log(data)
 
     const [orientationOne, setOrientationOne] = useState('top')
     const [orientationTwo, setOrientationTwo] = useState('bottom')
+
+    const determineOrientation = (points, props) => {
+      if (points.length ===2){
+        if (points[0].y > points[1].y){
+        setOrientationOne('top')
+        setOrientationTwo('bottom')
+        } else {
+          setOrientationOne('bottom')
+          setOrientationTwo('top')
+        }
+      }
+      
+    }
 
     if (!data.comparisonSet){
       return(
@@ -20,8 +32,8 @@ const Graph = ({data}) => {
           scale={{ x: 'time'}}
           minDomain={{y:0}}
           containerComponent={<V.VictoryVoronoiContainer
-            clipContainerComponent={<V.VictoryClipContainer clipPadding={{top: 10, right: 10}}/>}
-            voronoiDimension = 'x'
+            voronoiDimension = "x"
+            activateData={false}
           />}
           
         >
@@ -37,6 +49,7 @@ const Graph = ({data}) => {
               padding: 3,
             },
             grid: {
+              stroke: 0,
               strokeDasharray: 0
             }
           }}
@@ -58,25 +71,27 @@ const Graph = ({data}) => {
               padding: 3
             },
             grid: {
+              stroke: 0,
               strokeDasharray: 0
             }
           }}
           tickFormat={abbreviateNum}
         />
-        
+         
         <V.VictoryGroup
           data={data.currentSet}
           labels={({ datum }) => `${datum.x.getMonth() + 1}/${datum.x.getDate()}/${datum.x.getFullYear()}\n${datum.locationName}: ${commafy(datum.y)}`}
           labelComponent={
             <V.VictoryTooltip
             flyoutStyle={{
-              stroke:'4bc0c0',
-                strokeWidth: '2',
+              stroke:'#4bc0c0',
+              strokeWidth: '2',
               fill: 'black',
               fillOpacity: '0.7'
             }}
+            flyoutPadding={{top:5, bottom:5, left:5, right: 15}}
             style={{
-              textAnchor: 'left',
+              textAnchor: 'start',
               fontSize: 12,
               fill: 'lightgrey'
             }}
@@ -93,6 +108,7 @@ const Graph = ({data}) => {
             style={{
               data:{ strokeWidth: 3 }
             }}
+            interpolation='natural'
           />
         </V.VictoryGroup>
         
@@ -111,23 +127,82 @@ const Graph = ({data}) => {
           scale={{ x: 'time'}}
           minDomain={{y:0}}
           containerComponent={<V.VictoryVoronoiContainer
-            onActivated={(points, props) => {
-              if (points.length ===2){
-                if (points[0].y > points[1].y){
-                setOrientationOne('top')
-                setOrientationTwo('bottom')
-                } else {
-                  setOrientationOne('bottom')
-                  setOrientationTwo('top')
-                }
-              }
-              
-            }}
-            voronoiDimension = 'x'
-            minimumZoom={{x:1000000000,y:200}}
+            onActivated={determineOrientation}
+            voronoiDimension = "x"
+            activateData={false}
           />}
           
         >
+
+        
+        
+        <V.VictoryGroup
+          data={data.currentSet}
+          labels={({ datum }) => `${datum.x.getMonth() + 1}/${datum.x.getDate()}/${datum.x.getFullYear()}\n${datum.locationName}: ${commafy(datum.y)}`}
+          labelComponent={
+            <V.VictoryTooltip
+            flyoutStyle={{
+              stroke: '#4bc0c0',
+              strokeWidth: '2',
+              fill: 'black',
+              fillOpacity: '0.7'
+            }}
+            flyoutPadding={{top:5, bottom:5, left:5, right: 15}}
+            style={{
+              textAnchor: 'start',
+              fontSize: 12,
+              fill: 'lightgrey'
+            }}
+            orientation={orientationOne}
+            pointerLength={0}
+            constrainToVisibleArea
+            />
+          }
+          style={{
+            data:{ fill: '#40a0a0'}
+          }}
+        >
+          <V.VictoryLine
+            style={{
+              data:{ strokeWidth: 3 }
+            }}
+            interpolation='natural'
+          />
+        </V.VictoryGroup>
+
+        <V.VictoryGroup
+          data={data.comparisonSet}
+          labels={({ datum }) => `${datum.x.getMonth() + 1}/${datum.x.getDate()}/${datum.x.getFullYear()}\n${datum.locationName}: ${commafy(datum.y)}`}
+          labelComponent={
+            <V.VictoryTooltip
+              flyoutStyle={{
+                stroke:'#ff6384',
+                strokeWidth: '2',
+                fill: 'black',
+                fillOpacity: '0.7'
+              }}
+              flyoutPadding={{top:5, bottom:5, left:5, right: 15}}
+              style={{
+                textAnchor: 'start',
+                fontSize: 12,
+                fill: 'lightgrey'
+              }}
+              orientation={orientationTwo}
+              pointerLength={0}
+              constrainToVisibleArea
+            />
+          }
+          style={{
+            data:{ fill: '#ff6384'}
+          }}
+        >
+          <V.VictoryLine
+            style={{
+              data:{ strokeWidth: 3 }
+            }}
+            interpolation='natural'
+          />
+        </V.VictoryGroup>
 
         <V.VictoryAxis
           tickCount={8}
@@ -140,7 +215,8 @@ const Graph = ({data}) => {
               padding: 3,
             },
             grid: {
-              strokeDasharray: 0
+              stroke:0,
+              strokeDasharray:0
             }
           }}
           tickLabelComponent={<V.VictoryLabel
@@ -161,75 +237,12 @@ const Graph = ({data}) => {
               padding: 3
             },
             grid: {
+              stroke: 0,
               strokeDasharray: 0
             }
           }}
           tickFormat={abbreviateNum}
         />
-        
-        <V.VictoryGroup
-          data={data.currentSet}
-          labels={({ datum }) => `${datum.x.getMonth() + 1}/${datum.x.getDate()}/${datum.x.getFullYear()}\n${datum.locationName}: ${commafy(datum.y)}`}
-          labelComponent={
-            <V.VictoryTooltip
-            flyoutStyle={{
-              stroke:'4bc0c0',
-                strokeWidth: '2',
-              fill: 'black',
-              fillOpacity: '0.7'
-            }}
-            style={{
-              textAnchor: 'left',
-              fontSize: 12,
-              fill: 'lightgrey'
-            }}
-            orientation={orientationOne}
-            pointerLength={0}
-            constrainToVisibleArea
-            />
-          }
-          style={{
-            data:{ fill: '#40a0a0'}
-          }}
-        >
-          <V.VictoryLine
-            style={{
-              data:{ strokeWidth: 3 }
-            }}
-          />
-        </V.VictoryGroup>
-
-        <V.VictoryGroup
-          data={data.comparisonSet}
-          labels={({ datum }) => `${datum.x.getMonth() + 1}/${datum.x.getDate()}/${datum.x.getFullYear()}\n${datum.locationName}: ${commafy(datum.y)}`}
-          labelComponent={
-            <V.VictoryTooltip
-              flyoutStyle={{
-                stroke:'ff6384',
-                strokeWidth: '2',
-                fill: 'black',
-                fillOpacity: '0.7'
-              }}
-              style={{
-                textAnchor: 'left',
-                fontSize: 12,
-                fill: 'lightgrey'
-              }}
-              orientation={orientationTwo}
-              pointerLength={0}
-              constrainToVisibleArea
-            />
-          }
-          style={{
-            data:{ fill: '#ff6384'}
-          }}
-        >
-          <V.VictoryLine
-            style={{
-              data:{ strokeWidth: 3 }
-            }}
-          />
-        </V.VictoryGroup>
         
       </V.VictoryChart>
       </div>
