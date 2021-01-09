@@ -4,22 +4,29 @@
     .top-row{
         display:flex;
         justify-content: center;
-        select{
-            height: 25px;
-            border:0;
-            transform: scale(1.5);
-            &:hover{
-                cursor: pointer;
-            }
+        .select{
+            width: 110px;
         }
         .button-container{
             position: absolute;
             right:25px;
             display:flex;
-            flex-flow: column nowrap;
+            flex-flow: row nowrap;
+            button{
+                font-size: 14px;
+                color: #445a64;
+                background: none;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin:5px 5px;
+                &:hover{
+                    cursor: pointer;
+                    border: 1px solid rgb(185, 185, 185)
+                }
+            }
         }
     }
     .chart-container{
-        padding: 25px;
+        padding: 0px;
     }
 } 

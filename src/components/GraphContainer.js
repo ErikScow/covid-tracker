@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import axios from 'axios'
+import Select from 'react-select'
 import { Context } from '../contexts/context'
 
 import { convertStateName } from '../utils/stringModifiers'
@@ -160,20 +161,62 @@ const GraphContainer = (props) => {
     }
 
     const changeDataType = (e) => {
-        setGraphDataType(e.target.value)
+        setGraphDataType(e.value)
     }
+
+    //options array for select component
+    const dataTypeOptions = [
+        { value: 'cases', label: 'Cases' },
+        { value: 'deaths', label: 'Deaths' }
+    ]
 
     if(graphDataType === 'cases'){
         if(!clipBoardStatus){
             return(
                 <div className='graph-outer-container'>
                     <div className='top-row'>
-                        <select onChange={changeDataType}>
-                            <option value='cases'>Cases</option>
-                            <option value='deaths'>Deaths</option>
-                        </select>
+                    <Select 
+                        className='select'
+                        options={dataTypeOptions}
+                        onChange={changeDataType}
+                        defaultValue={{ value: 'cases', label:'Cases' }}
+                        isSearchable={false}
+                        theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                            ...theme.colors,
+                              primary25: '#daedee',
+                              primary: '#40a0a0',
+                              primary50: '#daedee'
+                            },
+                          })}
+                        styles={{
+                            control: (provided, state) => ({
+                                ...provided,
+                                minHeight: '30px',
+                                height: '30px',
+                                boxShadow: state.isFocused ? null : null,
+                              }),
+                          
+                              valueContainer: (provided, state) => ({
+                                ...provided,
+                                height: '30px',
+                                padding: '0 6px'
+                              }),
+                          
+                              input: (provided, state) => ({
+                                ...provided,
+                                margin: '0px',
+                              }),
+                              indicatorsContainer: (provided, state) => ({
+                                ...provided,
+                                height: '30px',
+                              }),
+                          
+                        }}
+                    />
                         <div className='button-container'>
-                            <button onClick={saveToClipBoard}>Save To Clipboard</button>
+                            <button onClick={saveToClipBoard}>Save to Clipboard</button>
                             <button onClick={toggleClipBoard}>{clipBoardButton}</button>
                         </div>
                     </div>
@@ -185,10 +228,46 @@ const GraphContainer = (props) => {
         return(
             <div className='graph-outer-container'>
                 <div className='top-row'>
-                    <select onChange={changeDataType}>
-                        <option value='cases'>Cases</option>
-                        <option value='deaths'>Deaths</option>
-                    </select>
+                <Select 
+                        className='select'
+                        options={dataTypeOptions}
+                        onChange={changeDataType}
+                        defaultValue={{ value: 'cases', label:'Cases' }}
+                        isSearchable={false}
+                        theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                            ...theme.colors,
+                              primary25: '#daedee',
+                              primary: '#40a0a0',
+                              primary50: '#daedee'
+                            },
+                          })}
+                        styles={{
+                            control: (provided, state) => ({
+                                ...provided,
+                                minHeight: '30px',
+                                height: '30px',
+                                boxShadow: state.isFocused ? null : null,
+                              }),
+                          
+                              valueContainer: (provided, state) => ({
+                                ...provided,
+                                height: '30px',
+                                padding: '0 6px'
+                              }),
+                          
+                              input: (provided, state) => ({
+                                ...provided,
+                                margin: '0px',
+                              }),
+                              indicatorsContainer: (provided, state) => ({
+                                ...provided,
+                                height: '30px',
+                              }),
+                          
+                        }}
+                    />
                     <div className='button-container'>
                         <button onClick={toggleClipBoard}>{clipBoardButton}</button>
                     </div>
@@ -201,12 +280,48 @@ const GraphContainer = (props) => {
             return(
                 <div className='graph-outer-container'>
                     <div className='top-row'>
-                        <select onChange={changeDataType}>
-                            <option value='cases'>Cases</option>
-                            <option value='deaths'>Deaths</option>
-                        </select>
+                    <Select 
+                        className='select'
+                        options={dataTypeOptions}
+                        onChange={changeDataType}
+                        defaultValue={{ value: 'cases', label:'Cases' }}
+                        isSearchable={false}
+                        theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                            ...theme.colors,
+                              primary25: '#daedee',
+                              primary: '#40a0a0',
+                              primary50: '#daedee'
+                            },
+                          })}
+                        styles={{
+                            control: (provided, state) => ({
+                                ...provided,
+                                minHeight: '30px',
+                                height: '30px',
+                                boxShadow: state.isFocused ? null : null,
+                              }),
+                          
+                              valueContainer: (provided, state) => ({
+                                ...provided,
+                                height: '30px',
+                                padding: '0 6px'
+                              }),
+                          
+                              input: (provided, state) => ({
+                                ...provided,
+                                margin: '0px',
+                              }),
+                              indicatorsContainer: (provided, state) => ({
+                                ...provided,
+                                height: '30px',
+                              }),
+                          
+                        }}
+                    />
                         <div className='button-container'>
-                            <button onClick={saveToClipBoard}>Save To Clipboard</button>
+                            <button onClick={saveToClipBoard}>Save to Clipboard</button>
                             <button onClick={toggleClipBoard}>{clipBoardButton}</button>
                         </div>
                     </div>
@@ -219,10 +334,45 @@ const GraphContainer = (props) => {
         return(
             <div className='graph-outer-container'>
                 <div className='top-row'>
-                    <select onChange={changeDataType}>
-                        <option value='cases'>Cases</option>
-                        <option value='deaths'>Deaths</option>
-                    </select>
+                    <Select 
+                        className='select'
+                        options={dataTypeOptions}
+                        onChange={changeDataType}
+                        defaultValue={{ value: 'cases', label:'Cases' }}
+                        isSearchable={false}
+                        theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                            ...theme.colors,
+                              primary25: '#daedee',
+                              primary: '#40a0a0',
+                            },
+                          })}
+                        styles={{
+                            control: (provided, state) => ({
+                                ...provided,
+                                minHeight: '30px',
+                                height: '30px',
+                                boxShadow: state.isFocused ? null : null,
+                              }),
+                          
+                              valueContainer: (provided, state) => ({
+                                ...provided,
+                                height: '30px',
+                                padding: '0 6px'
+                              }),
+                          
+                              input: (provided, state) => ({
+                                ...provided,
+                                margin: '0px',
+                              }),
+                              indicatorsContainer: (provided, state) => ({
+                                ...provided,
+                                height: '30px',
+                              }),
+                          
+                        }}
+                    />
                     <div className='button-container'>
                         <button onClick={toggleClipBoard}>{clipBoardButton}</button>
                     </div>

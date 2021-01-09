@@ -2,7 +2,24 @@
     position: fixed;
     left: 2.5%;
     width: 15%;
+    input{
+        height:26px;
+        width: 94%;
+        font-size: 16px;
+        padding-left: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        &:hover{
+            cursor: text;
+            border: 1px solid rgb(185, 185, 185)
+        }
+    }
     .clipboard{
         color: #ff6384;
     }
+    p{
+        padding: 10px 0px 2px 2px;
+    }
 } 
+

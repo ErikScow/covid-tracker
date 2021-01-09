@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import { Context } from '../contexts/context'
+import Select from 'react-select'
 
 
 const SideControlls = () => {
@@ -20,7 +21,7 @@ const SideControlls = () => {
       })
 
     const selectLocationType = (e) => {
-        setLocationType(e.target.value)
+        setLocationType(e.value)
         setFilterStr('')
     }
 
@@ -29,11 +30,11 @@ const SideControlls = () => {
     }
 
     const changeSortBy = (e) => {
-        setSortBy(e.target.value)
+        setSortBy(e.value)
     }
 
     const changeSortOrder = (e) => {
-        setSortOrder(e.target.value)
+        setSortOrder(e.value)
     }
 
     useEffect(() => {
@@ -44,6 +45,26 @@ const SideControlls = () => {
         setClipBoardDisplay(clipBoardData)
     },[clipBoardData])
 
+    //react select component options arrays
+    const locationOptions = [
+        { value: 'countries' , label: 'Countries' },
+        { value: 'states' , label: 'States' }
+    ]
+
+    const sortByOptions = [
+        { value: 'alphabetical', label: 'Alphabetical' },
+        { value: 'cases', label: 'Cases' },
+        { value: 'deaths', label: 'Deaths'},
+        { value: 'cases/mil', label: 'Cases/Mil'},
+        { value: 'deaths/mil', label: 'Deaths/Mil'},
+        { value: 'deathRate', label: 'Death Rate'}
+    ]
+
+    const sortOrderOptions = [
+        { value: 'low-high', label: 'Low to High'},
+        { value: 'high-low', label: 'High to Low'}
+    ]
+
     return(
         <div className="side-controlls">
             <input 
@@ -53,24 +74,128 @@ const SideControlls = () => {
                 onChange={setFilterString}
             />
             <p>Location Type</p>
-            <select onChange={selectLocationType}> 
-                <option value='countries'>Countries</option>
-                <option value='states'>States</option>
-            </select>
+            <Select 
+                className='select'
+                onChange={selectLocationType} 
+                options={locationOptions}
+                defaultValue={ {value:'countries', label: 'Countries'} }
+                isSearchable={false}
+                theme={(theme) => ({
+                    ...theme,
+                    colors: {
+                    ...theme.colors,
+                      primary25: '#daedee',
+                      primary: '#40a0a0',
+                      primary50: '#daedee'
+                    },
+                  })}
+                styles={{
+                    control: (provided, state) => ({
+                        ...provided,
+                        minHeight: '30px',
+                        height: '30px',
+                        boxShadow: state.isFocused ? null : null,
+                      }),
+                  
+                      valueContainer: (provided, state) => ({
+                        ...provided,
+                        height: '30px',
+                        padding: '0 6px'
+                      }),
+                  
+                      input: (provided, state) => ({
+                        ...provided,
+                        margin: '0px',
+                      }),
+                      indicatorsContainer: (provided, state) => ({
+                        ...provided,
+                        height: '30px',
+                      }),
+                  
+                }}
+            /> 
             <p>Sort By</p>
-            <select onChange={changeSortBy}>
-                <option value='alphabetical'>Alphabetical</option>
-                <option value='cases'>Cases</option>
-                <option value='deaths'>Deaths</option>
-                <option value='cases/mil'>Cases/Mil</option>
-                <option value='deaths/mil'>Deaths/Mil</option>
-                <option value='deathRate'>Death Rate</option>
-            </select>
+            <Select 
+                className='select'
+                onChange={changeSortBy}
+                options={sortByOptions}
+                defaultValue={{ value:'alphabetical', label: 'Alphabetical'}}
+                isSearchable={false}
+                theme={(theme) => ({
+                    ...theme,
+                    colors: {
+                    ...theme.colors,
+                      primary25: '#daedee',
+                      primary: '#40a0a0',
+                      primary50: '#daedee'
+                    },
+                  })}
+                styles={{
+                    control: (provided, state) => ({
+                        ...provided,
+                        minHeight: '30px',
+                        height: '30px',
+                        boxShadow: state.isFocused ? null : null,
+                      }),
+                  
+                      valueContainer: (provided, state) => ({
+                        ...provided,
+                        height: '30px',
+                        padding: '0 6px'
+                      }),
+                  
+                      input: (provided, state) => ({
+                        ...provided,
+                        margin: '0px',
+                      }),
+                      indicatorsContainer: (provided, state) => ({
+                        ...provided,
+                        height: '30px',
+                      }),
+                  
+                }}
+            />
             <p>Sort Order</p>
-            <select onChange={changeSortOrder}>
-                <option value='low-high'>Low to High</option>
-                <option value='high-low'>High to Low</option>
-            </select>
+            <Select 
+                className='select'
+                onChange={changeSortOrder}
+                options={sortOrderOptions}
+                defaultValue = {{ value: 'low-high', label: 'Low to High'}}
+                isSearchable={false}
+                theme={(theme) => ({
+                    ...theme,
+                    colors: {
+                    ...theme.colors,
+                      primary25: '#daedee',
+                      primary: '#40a0a0',
+                      primary50: '#daedee'
+                    },
+                  })}
+                styles={{
+                    control: (provided, state) => ({
+                        ...provided,
+                        minHeight: '30px',
+                        height: '30px',
+                        boxShadow: state.isFocused ? null : null,
+                      }),
+                  
+                      valueContainer: (provided, state) => ({
+                        ...provided,
+                        height: '30px',
+                        padding: '0 6px'
+                      }),
+                  
+                      input: (provided, state) => ({
+                        ...provided,
+                        margin: '0px',
+                      }),
+                      indicatorsContainer: (provided, state) => ({
+                        ...provided,
+                        height: '30px',
+                      }),
+                  
+                }}
+            />
         
             <p>Clipboard: <span className='clipboard'>{clipBoardDisplay.cases[0].locationName}</span></p>
             

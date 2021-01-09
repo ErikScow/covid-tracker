@@ -58,25 +58,40 @@ html {
   box-sizing: border-box;
 }
 
+body {
+  color: #445a64;
+}
+
 nav {
   position: fixed;
   top: 0;
   width: 100%;
   margin: 0;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
   background: #daeeee;
   z-index: 300;
 }
-nav h1 {
-  margin: 10px;
+nav .nav-container {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
-nav .link-container {
+nav .nav-container h1 {
+  margin: 10px 0;
+}
+nav .nav-container .link-container {
   display: flex;
   justify-content: space-between;
   width: 100px;
-  margin: 10px;
+  margin: 10px 0;
+}
+nav .nav-container .link-container .nav-link {
+  color: inherit;
+  text-decoration: none;
+}
+nav .nav-container .link-container .nav-link:hover {
+  color: #262d31;
 }
 
 .body {
@@ -97,9 +112,9 @@ nav .link-container {
   width: 60%;
   z-index: 200;
 }
-.content-container .outer-container.labels:hover {
-  cursor: inherit;
-  color: black;
+.content-container .data:hover {
+  cursor: pointer;
+  color: #40a0a0;
 }
 .content-container .items-container {
   width: 100%;
@@ -108,10 +123,6 @@ nav .link-container {
   justify-content: space-between;
   background: white;
   padding: 10px 0;
-}
-.content-container .items-container:hover {
-  cursor: pointer;
-  color: #40a0a0;
 }
 .content-container .items-container .name-item {
   width: 20%;
@@ -132,8 +143,24 @@ nav .link-container {
   left: 2.5%;
   width: 15%;
 }
+.side-controlls input {
+  height: 26px;
+  width: 94%;
+  font-size: 16px;
+  padding-left: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.side-controlls input:hover {
+  cursor: text;
+  border: 1px solid #b9b9b9;
+}
 .side-controlls .clipboard {
   color: #ff6384;
+}
+.side-controlls p {
+  padding: 10px 0px 2px 2px;
 }
 
 .graph-outer-container {
@@ -144,22 +171,39 @@ nav .link-container {
   display: flex;
   justify-content: center;
 }
-.graph-outer-container .top-row select {
-  height: 25px;
-  border: 0;
-  transform: scale(1.5);
-}
-.graph-outer-container .top-row select:hover {
-  cursor: pointer;
+.graph-outer-container .top-row .select {
+  width: 110px;
 }
 .graph-outer-container .top-row .button-container {
   position: absolute;
   right: 25px;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
+}
+.graph-outer-container .top-row .button-container button {
+  font-size: 14px;
+  color: #445a64;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin: 5px 5px;
+}
+.graph-outer-container .top-row .button-container button:hover {
+  cursor: pointer;
+  border: 1px solid #b9b9b9;
 }
 .graph-outer-container .chart-container {
-  padding: 25px;
+  padding: 0px;
+}
+
+.tip-component {
+  position: fixed;
+  right: 2.5%;
+  width: 15%;
+  line-height: 22px;
+}
+.tip-component h3 {
+  color: #ff6384;
 }
 
 /*# sourceMappingURL=App.css.map */

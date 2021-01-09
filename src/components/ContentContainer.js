@@ -8,6 +8,7 @@ import {
 
 import SideControlls from './SideControlls'
 import DataComponent from './DataComponent'
+import TipComponent from './TipComponent'
 
 const ContentContainer = (props) => {
     
@@ -90,6 +91,7 @@ const ContentContainer = (props) => {
     return(
         <div className='content-container'>
             <SideControlls/>
+            <TipComponent/>
             <div className='outer-container labels'>
                 <div className='items-container column-labels'>
                     <p className='name-item'>Location</p>

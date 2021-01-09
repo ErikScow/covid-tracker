@@ -3,18 +3,31 @@ nav{
     top:0;
     width: 100%;
     margin: 0;
-    display:flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
+    
     background:#daeeee;
     z-index: 300;
-    h1{
-        margin: 10px;
-    }
-    .link-container{
+    .nav-container{
+        width: 60%;
+        margin: 0 auto;
         display:flex;
+        flex-flow: row nowrap;
         justify-content: space-between;
-        width: 100px;
-        margin: 10px;
+        h1{
+            margin: 10px 0;
+        }
+        .link-container{
+            display:flex;
+            justify-content: space-between;
+            width: 100px;
+            margin: 10px 0;
+            .nav-link{
+                color:inherit;
+                text-decoration: none;
+                &:hover{
+                    color: #262d31
+                }
+            }
+        }
     }
+    
 }

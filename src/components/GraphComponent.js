@@ -27,7 +27,7 @@ const Graph = ({data}) => {
         <V.VictoryChart 
           width={800}
           height={350}
-          padding={{left:75, bottom:60, right: 50}}
+          padding={{left:62, bottom:60, right: 5}}
           theme={V.VictoryTheme.material}
           scale={{ x: 'time'}}
           minDomain={{y:0}}
@@ -89,10 +89,10 @@ const Graph = ({data}) => {
               fill: 'black',
               fillOpacity: '0.7'
             }}
-            flyoutPadding={{top:5, bottom:5, left:5, right: 15}}
+            flyoutPadding={{top:5, bottom:5, left:5, right: 5}}
             style={{
               textAnchor: 'start',
-              fontSize: 12,
+              fontSize: 15,
               fill: 'lightgrey'
             }}
             orientation={'bottom'}
@@ -122,7 +122,7 @@ const Graph = ({data}) => {
         <V.VictoryChart 
           width={800}
           height={350}
-          padding={{left:75, bottom:60, right: 50}}
+          padding={{left:62, bottom:60, right: 5}}
           theme={V.VictoryTheme.material}
           scale={{ x: 'time'}}
           minDomain={{y:0}}
@@ -147,10 +147,10 @@ const Graph = ({data}) => {
               fill: 'black',
               fillOpacity: '0.7'
             }}
-            flyoutPadding={{top:5, bottom:5, left:5, right: 15}}
+            flyoutPadding={{top:5, bottom:5, left:5, right: 5}}
             style={{
               textAnchor: 'start',
-              fontSize: 12,
+              fontSize: 15,
               fill: 'lightgrey'
             }}
             orientation={orientationOne}
@@ -181,10 +181,10 @@ const Graph = ({data}) => {
                 fill: 'black',
                 fillOpacity: '0.7'
               }}
-              flyoutPadding={{top:5, bottom:5, left:5, right: 15}}
+              flyoutPadding={{top:5, bottom:5, left:5, right: 5}}
               style={{
                 textAnchor: 'start',
-                fontSize: 12,
+                fontSize: 15,
                 fill: 'lightgrey'
               }}
               orientation={orientationTwo}

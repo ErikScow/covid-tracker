@@ -17,7 +17,7 @@ const DataComponent = (props) => {
     if(props.graphOpen){
         return (
         <div className='outer-container'>
-            <div onClick={toggleGraph} className='items-container'>
+            <div onClick={toggleGraph} className='items-container data'>
                 <p className='name-item'>{props.locationName}</p>
                 <div className='other-items'>
                     <p className='row-item'>{props.totalCases}</p>
@@ -41,7 +41,7 @@ const DataComponent = (props) => {
 
     return(
     <div className='outer-container'>
-        <div onClick={toggleGraph} className='items-container'>
+        <div onClick={toggleGraph} className='items-container data'>
             <p className='name-item'>{props.locationName}</p>
             <div className='other-items'>
                 <p className='row-item'>{props.totalCases}</p>

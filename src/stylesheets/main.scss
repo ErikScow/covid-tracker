@@ -1,6 +1,9 @@
 @import './reset';
-
+body{
+    color: #445a64
+}
 @import './partials/nav';
 @import './partials/contentContainer';
 @import './partials/sideControlls';
 @import './partials/graphContainer';
+@import './partials/tipComponent';
