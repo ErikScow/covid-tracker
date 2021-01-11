@@ -435,5 +435,10 @@ nav .nav-container .link-container .nav-link:hover {
     width: 90%;
   }
 }
+@media (max-width: 650px) {
+  .about {
+    width: 85%;
+  }
+}
 
 /*# sourceMappingURL=App.css.map */

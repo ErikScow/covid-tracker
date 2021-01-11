@@ -29,6 +29,15 @@ const AboutContainer = () => {
             <p>
                 The biggest challenges of this project were finding API's that provided the historical data I was looking for, and learning to use VictoryJS. From both of these tasks I learned how to approach development challenges in new ways, ranging from solving complex bugs that few if anyone before me has had to deal with, to communicating with the developers of the API to attempt to solve issues.
             </p>
+            <h2>Future Improvements</h2>
+            <h3>More Locations</h3>
+            <p>
+                Eventually, I would like to add the ability to see more location types, such as US counties, provinces/states for other countries, and other territories. To do so I would need to find new API's for those location types that support historical data on cases and deaths. If you know of such API's please contact me.
+            </p>
+            <h3>Better Graph Interface</h3>
+            <p>
+                The interface on the graph isn't bad, in my humble opinion, but I do think it could be better in terms of it's design and presentation. I am not a designer, and hence I don't know how I can improve this further. If you have any insights or ideas, please contact me.
+            </p>
         </div>
     )
 }
