@@ -1,17 +1,21 @@
 .graph-outer-container{
-    padding: 25px;
+    padding: 10px;
     position:relative;
     .top-row{
         display:flex;
         justify-content: center;
         .select{
             width: 110px;
+            .select{
+                z-index: 1000;
+            }
         }
         .button-container{
             position: absolute;
             right:25px;
             display:flex;
             flex-flow: row nowrap;
+            z-index: 1;
             button{
                 font-size: 14px;
                 color: #445a64;

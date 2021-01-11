@@ -90,17 +90,20 @@ const ContentContainer = (props) => {
 
     return(
         <div className='content-container'>
-            <SideControlls/>
-            <TipComponent/>
+            <div className='supplementary-content'>
+                <SideControlls/>
+                <TipComponent/> 
+            </div>
+            
             <div className='outer-container labels'>
                 <div className='items-container column-labels'>
                     <p className='name-item'>Location</p>
                     <div className='other-items'>
                         <p className='row-item'>Cases</p>
                         <p className='row-item'>Deaths</p>
-                        <p className='row-item'>Cases/Mil</p>
-                        <p className='row-item'>Deaths/Mil</p>
-                        <p className='row-item'>Death Rate</p>
+                        <p className='row-item'>Cases/M</p>
+                        <p className='row-item'>Deaths/M</p>
+                        <p className='row-item'>Death%</p>
                     </div>
                 </div>
             </div>

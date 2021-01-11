@@ -1,0 +1,22 @@
+@media(max-width: 450px){
+    .graph-outer-container{
+        .top-row{
+            display:flex;
+            flex-direction: column-reverse;
+            
+            justify-content: center;
+            align-items: center;
+            .select{
+                width: 110px;
+                z-index: 1000;
+            }
+            .button-container{
+                position: relative;
+                right: 0px;
+            }
+        }
+        .chart-container{
+            padding: 0px;
+        }
+    } 
+}

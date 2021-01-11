@@ -60,6 +60,7 @@ html {
 
 body {
   color: #445a64;
+  box-sizing: border-box;
 }
 
 nav {
@@ -67,6 +68,7 @@ nav {
   top: 0;
   width: 100%;
   margin: 0;
+  height: 36px;
   background: #daeeee;
   z-index: 300;
 }
@@ -145,7 +147,7 @@ nav .nav-container .link-container .nav-link:hover {
 }
 .side-controlls input {
   height: 26px;
-  width: 94%;
+  width: 95%;
   font-size: 16px;
   padding-left: 8px;
   border: 1px solid #ccc;
@@ -159,12 +161,15 @@ nav .nav-container .link-container .nav-link:hover {
 .side-controlls .clipboard {
   color: #ff6384;
 }
+.side-controlls .clipboard-indicator {
+  margin-top: 15px;
+}
 .side-controlls p {
   padding: 10px 0px 2px 2px;
 }
 
 .graph-outer-container {
-  padding: 25px;
+  padding: 10px;
   position: relative;
 }
 .graph-outer-container .top-row {
@@ -174,11 +179,15 @@ nav .nav-container .link-container .nav-link:hover {
 .graph-outer-container .top-row .select {
   width: 110px;
 }
+.graph-outer-container .top-row .select .select {
+  z-index: 1000;
+}
 .graph-outer-container .top-row .button-container {
   position: absolute;
   right: 25px;
   display: flex;
   flex-flow: row nowrap;
+  z-index: 1;
 }
 .graph-outer-container .top-row .button-container button {
   font-size: 14px;
@@ -196,14 +205,213 @@ nav .nav-container .link-container .nav-link:hover {
   padding: 0px;
 }
 
-.tip-component {
+.tip-container {
   position: fixed;
   right: 2.5%;
   width: 15%;
-  line-height: 22px;
 }
-.tip-component h3 {
+.tip-container .tip-component {
+  line-height: 22px;
+  text-align: justify;
+}
+.tip-container .tip-component h3 {
   color: #ff6384;
+}
+.tip-container .tip-component span.button {
+  font-size: 14px;
+  color: #445a64;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 0 4px;
+}
+
+@media (max-width: 935px) {
+  .content-container {
+    width: 95%;
+    margin: 40px auto;
+  }
+  .content-container .outer-container {
+    border-bottom: 1px solid lightgrey;
+  }
+  .content-container .outer-container.labels {
+    border-bottom: 2px solid lightgrey;
+    position: sticky;
+    top: 36px;
+    width: 100%;
+    z-index: 200;
+  }
+  .content-container .data:hover {
+    cursor: pointer;
+    color: #40a0a0;
+  }
+  .content-container .items-container {
+    width: 100%;
+    display: flex;
+    flex-flow: row, nowrap;
+    justify-content: space-between;
+    background: white;
+    padding: 10px 0;
+  }
+  .content-container .items-container .name-item {
+    width: 20%;
+  }
+  .content-container .items-container .other-items {
+    width: 80%;
+    display: flex;
+    flex-flow: row, nowrap;
+    justify-content: space-between;
+  }
+  .content-container .items-container .other-items .row-item {
+    width: 20%;
+    text-align: right;
+  }
+}
+@media (max-width: 650px) {
+  .content-container {
+    font-size: 12px;
+  }
+  .content-container .graph-outer-container .select {
+    font-size: 16px;
+    transform: scale(0.8);
+  }
+}
+@media (max-width: 450px) {
+  .content-container {
+    font-size: 10px;
+  }
+  .content-container .graph-outer-container .select {
+    font-size: 16px;
+    transform: scale(0.8);
+  }
+}
+@media (max-width: 935px) {
+  .side-controlls {
+    position: relative;
+    display: inline-block;
+    left: 0;
+    width: 60%;
+    margin: 0px;
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 201;
+  }
+  .side-controlls input {
+    height: 26px;
+    width: 94%;
+    font-size: 16px;
+    padding-left: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .side-controlls input:hover {
+    cursor: text;
+    border: 1px solid #dadada;
+  }
+  .side-controlls .clipboard {
+    color: #ff6384;
+  }
+  .side-controlls .clipboard-indicator {
+    margin-top: 15px;
+  }
+  .side-controlls p {
+    padding: 10px 0px 2px 2px;
+  }
+}
+@media (max-width: 650px) {
+  .side-controlls {
+    font-size: inherit;
+    margin-top: 10px;
+  }
+}
+@media (max-width: 450px) {
+  .side-controlls {
+    width: 80%;
+  }
+}
+@media (max-width: 935px) {
+  .tip-container {
+    margin-top: 15px;
+    position: absolute;
+  }
+  .tip-container .tip-component {
+    font-size: 14px;
+    line-height: 15px;
+    text-align: left;
+    height: 275px;
+    overflow-y: auto;
+  }
+}
+@media (max-width: 650px) {
+  .tip-container {
+    margin-top: 10px;
+  }
+  .tip-container .tip-component {
+    font-size: 12px;
+  }
+}
+@media (max-width: 450px) {
+  .tip-container {
+    position: relative;
+    width: 80%;
+  }
+  .tip-container .tip-component {
+    height: 80px;
+  }
+}
+@media (max-width: 935px) {
+  .supplementary-content {
+    padding-bottom: 20px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+@media (max-width: 450px) {
+  .graph-outer-container .top-row {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .graph-outer-container .top-row .select {
+    width: 110px;
+    z-index: 1000;
+  }
+  .graph-outer-container .top-row .button-container {
+    position: relative;
+    right: 0px;
+  }
+  .graph-outer-container .chart-container {
+    padding: 0px;
+  }
+}
+@media (max-width: 935px) {
+  nav .nav-container {
+    width: 90%;
+  }
+}
+@media (max-width: 650px) {
+  nav {
+    font-size: 14px;
+  }
+  nav .nav-container {
+    width: 90%;
+  }
+}
+@media (max-width: 450px) {
+  nav {
+    font-size: 12px;
+  }
+  nav .nav-container {
+    width: 90%;
+  }
 }
 
 /*# sourceMappingURL=App.css.map */

@@ -1,9 +1,21 @@
-.tip-component{
+.tip-container{
     position: fixed;
     right: 2.5%;
     width: 15%;
-    line-height: 22px;
-    h3{
-        color: #ff6384
+    .tip-component{
+        
+        line-height: 22px;
+        text-align: justify;
+        h3{
+            color: #ff6384
+        }
+        span.button{
+                font-size: 14px;
+                color: #445a64;
+                background: none;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                padding: 0 4px;
+        }
     }
 }

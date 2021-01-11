@@ -1,9 +1,17 @@
 @import './reset';
 body{
-    color: #445a64
+    color: #445a64;
+    box-sizing: border-box
 }
 @import './partials/nav';
 @import './partials/contentContainer';
 @import './partials/sideControlls';
 @import './partials/graphContainer';
 @import './partials/tipComponent';
+
+@import './media/contentContainerMedia';
+@import './media/sideControllsMedia';
+@import './media/tipsContainerMedia';
+@import './media/supplementaryContentMedia';
+@import './media/graphContainerMedia';
+@import './media/navMedia';

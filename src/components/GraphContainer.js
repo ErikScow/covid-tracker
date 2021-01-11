@@ -13,7 +13,7 @@ const GraphContainer = (props) => {
     const [graphCountriesStore, setGraphCountriesStore] = graphDataCountries
     const [clipBoardData, setClipBoardData] = clipBoard
 
-    const [clipBoardButton, setClipBoardButton] = useState('Compare Clipboard')
+    const [clipBoardButton, setClipBoardButton] = useState('Compare')
     const [clipBoardStatus, setClipBoardStatus] = useState(false)
 
     const [currentGraphData, setCurrentGraphData] = useState({
@@ -149,10 +149,10 @@ const GraphContainer = (props) => {
     const toggleClipBoard = () => {
         if(clipBoardStatus){
             setClipBoardStatus(false)
-            setClipBoardButton('Compare Clipboard')
+            setClipBoardButton('Compare')
         } else {
             setClipBoardStatus(true)
-            setClipBoardButton('Hide Clipboard')
+            setClipBoardButton('Back')
         }
     }
 
@@ -216,7 +216,7 @@ const GraphContainer = (props) => {
                         }}
                     />
                         <div className='button-container'>
-                            <button onClick={saveToClipBoard}>Save to Clipboard</button>
+                            <button onClick={saveToClipBoard}>Save</button>
                             <button onClick={toggleClipBoard}>{clipBoardButton}</button>
                         </div>
                     </div>
@@ -321,7 +321,7 @@ const GraphContainer = (props) => {
                         }}
                     />
                         <div className='button-container'>
-                            <button onClick={saveToClipBoard}>Save to Clipboard</button>
+                            <button onClick={saveToClipBoard}>Save</button>
                             <button onClick={toggleClipBoard}>{clipBoardButton}</button>
                         </div>
                     </div>

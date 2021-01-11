@@ -3,7 +3,6 @@ import * as V from 'victory'
 import { abbreviateNum, commafyNum as commafy } from '../utils/numModifiers'
 
 const Graph = ({data}) => { 
-    console.log(data)
 
     const [orientationOne, setOrientationOne] = useState('top')
     const [orientationTwo, setOrientationTwo] = useState('bottom')

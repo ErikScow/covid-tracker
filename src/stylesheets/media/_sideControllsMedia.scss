@@ -1,0 +1,51 @@
+@media(max-width: 935px){
+    .side-controlls{
+        position: relative;
+        display: inline-block;
+        left:0;
+        width: 60%;
+        margin: 0px;
+        padding: 10px;
+        margin-top: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        z-index: 201;
+        input{
+            height:26px;
+            width: 94%;
+            font-size: 16px;
+            padding-left: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            &:hover{
+                cursor: text;
+                border: 1px solid rgb(218, 218, 218)
+            }
+        }
+        .clipboard{
+            color: #ff6384;
+        }
+        .clipboard-indicator{
+            margin-top: 15px;
+        }
+        p{
+            padding: 10px 0px 2px 2px;
+        }
+    } 
+}
+
+@media(max-width: 650px){
+    .side-controlls{
+        font-size:inherit;
+        margin-top:10px;
+        
+    }
+    
+}
+
+@media(max-width: 450px){
+    .side-controlls{
+        width: 80%;
+    }
+}
