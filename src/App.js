@@ -45,9 +45,14 @@ function App() {
           if (country.length > 20 || country === "Global" || !data[country].All.abbreviation || !data[country].All.population){
             continue
           }
+          
+          let nameString = country
+          if (country === 'US'){
+            nameString = 'United States'
+          }
           formattedData.push(
             {
-              locationName: country,
+              locationName: nameString,
               locationType: 'country',
               totalCases: data[country].All.confirmed,
               totalDeaths: data[country].All.deaths,

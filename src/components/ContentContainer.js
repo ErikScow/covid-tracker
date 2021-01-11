@@ -46,7 +46,11 @@ const ContentContainer = (props) => {
 
     useEffect(() => {
         const filteredData = dataSet.filter(location => {
-            return location.locationName.toLowerCase().includes(filterStr.toLowerCase())
+
+            const stringLength = filterStr.length
+            const matchString = location.locationName.slice(0, stringLength)
+             
+            return matchString.toLowerCase().includes(filterStr.toLowerCase())
         })
         setSearched(filteredData)
     }, [filterStr])

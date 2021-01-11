@@ -226,6 +226,28 @@ nav .nav-container .link-container .nav-link:hover {
   padding: 0 4px;
 }
 
+.about {
+  width: 60%;
+  margin: 36px auto;
+}
+.about h2 {
+  color: #40a0a0;
+  font-size: 30px;
+  padding: 10px 0;
+}
+.about h3 {
+  font-size: 18px;
+  font-weight: bold;
+  padding-bottom: 6px;
+}
+.about p {
+  font-size: 16px;
+  padding-bottom: 6px;
+}
+.about a {
+  color: #ff6384;
+}
+
 @media (max-width: 935px) {
   .content-container {
     width: 95%;
