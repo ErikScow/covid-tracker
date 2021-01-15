@@ -8,6 +8,8 @@ import { convertStateName } from '../utils/stringModifiers'
 import GraphComponent from './GraphComponent'
 
 const GraphContainer = (props) => {
+    const [isLoading, setIsLoading] = useState(true)
+
     const { graphDataStates, graphDataCountries, clipBoard } = useContext(Context)
     const [graphStatesStore, setGraphStatesStore] = graphDataStates
     const [graphCountriesStore, setGraphCountriesStore] = graphDataCountries
@@ -31,7 +33,7 @@ const GraphContainer = (props) => {
             if(props.abbreviation in graphCountriesStore){
                 setCurrentGraphData(graphCountriesStore[props.abbreviation])
             } else {
-                axios.get(`http://localhost:5000/countries/cases/?abbrev=${props.abbreviation}`)
+                axios.get(`http://localhost:5000/proxy/countries/cases/?abbrev=${props.abbreviation}`)
                     .then(res => {
                         const caseData = res.data.All.dates
                         const formattedDataCases = []
@@ -59,11 +61,12 @@ const GraphContainer = (props) => {
                             newGraphCountriesStore[props.abbreviation] = countryData
                             setGraphCountriesStore(newGraphCountriesStore)
                         }
+                        setIsLoading(false)
                     })
                     .catch(err => {
                         console.error(err)
                     })
-                axios.get(`http://localhost:5000/countries/deaths/?abbrev=${props.abbreviation}`)
+                axios.get(`http://localhost:5000/proxy/countries/deaths/?abbrev=${props.abbreviation}`)
                     .then(res => {
                         const deathsData = res.data.All.dates
                         const formattedDataDeaths = []
@@ -100,7 +103,7 @@ const GraphContainer = (props) => {
             if(props.abbreviation in graphStatesStore){
                 setCurrentGraphData(graphStatesStore[props.abbreviation])
             } else {
-                axios.get(`http://localhost:5000/states/specific/?abbrev=${props.abbreviation}`)
+                axios.get(`http://localhost:5000/proxy/states/specific/?abbrev=${props.abbreviation}`)
                     .then(res => {
                         const data = res.data
                         const formattedDataCases = []
@@ -131,6 +134,7 @@ const GraphContainer = (props) => {
                             deaths: formattedDataDeaths
                         }
                         setGraphStatesStore(newGraphStatesStore)
+                        setIsLoading(false)
                     })
                     .catch(err => {
                         console.error(err)
@@ -169,6 +173,12 @@ const GraphContainer = (props) => {
         { value: 'cases', label: 'Cases' },
         { value: 'deaths', label: 'Deaths' }
     ]
+
+    if(isLoading){
+        return(
+            <div className='loader'></div>
+        )
+    }
 
     if(graphDataType === 'cases'){
         if(!clipBoardStatus){
