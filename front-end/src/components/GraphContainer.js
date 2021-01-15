@@ -31,7 +31,7 @@ const GraphContainer = (props) => {
             if(props.abbreviation in graphCountriesStore){
                 setCurrentGraphData(graphCountriesStore[props.abbreviation])
             } else {
-                axios.get(`https://cors-anywhere.herokuapp.com/https://covid-api.mmediagroup.fr/v1/history?ab=${props.abbreviation}&status=Confirmed`)
+                axios.get(`http://localhost:5000/countries/cases/?abbrev=${props.abbreviation}`)
                     .then(res => {
                         const caseData = res.data.All.dates
                         const formattedDataCases = []
@@ -63,7 +63,7 @@ const GraphContainer = (props) => {
                     .catch(err => {
                         console.error(err)
                     })
-                axios.get(`https://cors-anywhere.herokuapp.com/https://covid-api.mmediagroup.fr/v1/history?ab=${props.abbreviation}&status=Deaths`)
+                axios.get(`http://localhost:5000/countries/deaths/?abbrev=${props.abbreviation}`)
                     .then(res => {
                         const deathsData = res.data.All.dates
                         const formattedDataDeaths = []
@@ -100,7 +100,7 @@ const GraphContainer = (props) => {
             if(props.abbreviation in graphStatesStore){
                 setCurrentGraphData(graphStatesStore[props.abbreviation])
             } else {
-                axios.get(`https://api.covidtracking.com/v1/states/${props.abbreviation}/daily.json`)
+                axios.get(`http://localhost:5000/states/specific/?abbrev=${props.abbreviation}`)
                     .then(res => {
                         const data = res.data
                         const formattedDataCases = []

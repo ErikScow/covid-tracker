@@ -232,17 +232,17 @@ nav .nav-container .link-container .nav-link:hover {
 }
 .about h2 {
   color: #40a0a0;
-  font-size: 30px;
-  padding: 10px 0;
+  font-size: 34px;
+  padding: 20px 0;
 }
 .about h3 {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
-  padding-bottom: 6px;
+  padding-bottom: 14px;
 }
 .about p {
-  font-size: 16px;
-  padding-bottom: 6px;
+  font-size: 18px;
+  padding-bottom: 24px;
 }
 .about a {
   color: #ff6384;

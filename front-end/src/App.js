@@ -37,7 +37,7 @@ function App() {
 
   useEffect(() => {
 
-    axios.get(`https://cors-anywhere.herokuapp.com/https://covid-api.mmediagroup.fr/v1/cases`)
+    axios.get(`http://localhost:5000/countries`)
       .then(res => {
         const data = res.data
         const formattedData = []
@@ -70,7 +70,7 @@ function App() {
         console.error(err)
       })
     
-    axios.get('https://api.covidtracking.com/v1/states/current.json')
+    axios.get('http://localhost:5000/states')
       .then(res => {
         const data = res.data
         const statePopulationHash = {
