@@ -34,7 +34,7 @@ const GraphContainer = (props) => {
                 setCurrentGraphData(graphCountriesStore[props.abbreviation])
                 setIsLoading(false)
             } else {
-                axios.get(`http://covid.erikscow.com/proxy/countries/cases/?abbrev=${props.abbreviation}`)
+                axios.get(`https://covid.erikscow.com/proxy/countries/cases/?abbrev=${props.abbreviation}`)
                     .then(res => {
                         const caseData = res.data.All.dates
                         const formattedDataCases = []
@@ -67,7 +67,7 @@ const GraphContainer = (props) => {
                     .catch(err => {
                         console.error(err)
                     })
-                axios.get(`http://covid.erikscow.com/proxy/countries/deaths/?abbrev=${props.abbreviation}`)
+                axios.get(`https://covid.erikscow.com/proxy/countries/deaths/?abbrev=${props.abbreviation}`)
                     .then(res => {
                         const deathsData = res.data.All.dates
                         const formattedDataDeaths = []
@@ -105,7 +105,7 @@ const GraphContainer = (props) => {
                 setCurrentGraphData(graphStatesStore[props.abbreviation])
                 setIsLoading(false)
             } else {
-                axios.get(`http://covid.erikscow.com/proxy/states/specific/?abbrev=${props.abbreviation}`)
+                axios.get(`https://covid.erikscow.com/proxy/states/specific/?abbrev=${props.abbreviation}`)
                     .then(res => {
                         const data = res.data
                         const formattedDataCases = []
