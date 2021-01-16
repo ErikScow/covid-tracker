@@ -8,8 +8,6 @@ let countriesHistoricalDeathsCache = {}
 let statesCache = {}
 let statesHistoricalCache = {}
 
-let myVar = 10;
-
 function scheduleReset() {
     // get current time
     let reset = new Date();
@@ -35,14 +33,16 @@ const app = express();
 
 app.use(cors());
 
-app.get('/countries', (req, res) => {
+app.get('/proxy/countries', (req, res) => {
     if (countriesCache.data !== undefined){
+        console.log('sending cache')
         res.send(JSON.stringify(countriesCache.data))
 
     } else {
         axios.get('https://covid-api.mmediagroup.fr/v1/cases')
 
             .then(response => {
+                console.log('fetching')
                 countriesCache = response
                 res.send(JSON.stringify(response.data))
             })
@@ -53,7 +53,7 @@ app.get('/countries', (req, res) => {
     
 });
 
-app.get(`/countries/cases/`, (req, res) => {
+app.get(`/proxy/countries/cases/`, (req, res) => {
     if (req.query.abbrev in countriesHistoricalCasesCache){
         res.send(JSON.stringify(countriesHistoricalCasesCache[req.query.abbrev].data))
     } else {
@@ -68,7 +68,7 @@ app.get(`/countries/cases/`, (req, res) => {
     }
 })
 
-app.get(`/countries/deaths/`, (req, res) => {
+app.get(`/proxy/countries/deaths/`, (req, res) => {
     if (req.query.abbrev in countriesHistoricalDeathsCache){
 
         res.send(JSON.stringify(countriesHistoricalDeathsCache[req.query.abbrev].data))
@@ -84,7 +84,7 @@ app.get(`/countries/deaths/`, (req, res) => {
     }
 })
 
-app.get(`/states`, (req, res) => {
+app.get(`/proxy/states`, (req, res) => {
     if (statesCache.data !== undefined){
         res.send(JSON.stringify(statesCache.data))
     } else {
@@ -99,7 +99,7 @@ app.get(`/states`, (req, res) => {
     } 
 })
 
-app.get(`/states/specific`, (req, res) => {
+app.get(`/proxy/states/specific`, (req, res) => {
     if (req.query.abbrev in statesHistoricalCache){
         res.send(JSON.stringify(statesHistoricalCache[req.query.abbrev].data))
     } else {
