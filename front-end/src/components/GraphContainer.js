@@ -32,6 +32,7 @@ const GraphContainer = (props) => {
         if (props.locationType === 'country'){
             if(props.abbreviation in graphCountriesStore){
                 setCurrentGraphData(graphCountriesStore[props.abbreviation])
+                setIsLoading(false)
             } else {
                 axios.get(`http://localhost:5000/proxy/countries/cases/?abbrev=${props.abbreviation}`)
                     .then(res => {
@@ -102,6 +103,7 @@ const GraphContainer = (props) => {
         } else if (props.locationType === 'state'){
             if(props.abbreviation in graphStatesStore){
                 setCurrentGraphData(graphStatesStore[props.abbreviation])
+                setIsLoading(false)
             } else {
                 axios.get(`http://localhost:5000/proxy/states/specific/?abbrev=${props.abbreviation}`)
                     .then(res => {
@@ -178,9 +180,7 @@ const GraphContainer = (props) => {
         return(
             <div className='loader'></div>
         )
-    }
-
-    if(graphDataType === 'cases'){
+    } else if(graphDataType === 'cases'){
         if(!clipBoardStatus){
             return(
                 <div className='graph-outer-container'>
