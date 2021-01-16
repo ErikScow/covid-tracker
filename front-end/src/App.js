@@ -37,7 +37,7 @@ function App() {
 
   useEffect(() => {
 
-    axios.get(`http://localhost:5000/proxy/countries`)
+    axios.get(`http://covid.erikscow.com/proxy/countries`)
       .then(res => {
         const data = res.data
         const formattedData = []
@@ -70,7 +70,7 @@ function App() {
         console.error(err)
       })
     
-    axios.get('http://localhost:5000/proxy/states')
+    axios.get('http://covid.erikscow.com/proxy/states')
       .then(res => {
         const data = res.data
         const statePopulationHash = {
