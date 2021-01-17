@@ -33,6 +33,9 @@ const Graph = ({data}) => {
           containerComponent={<V.VictoryVoronoiContainer
             voronoiDimension = "x"
             activateData={false}
+            style={{
+              touchAction: 'auto'
+            }}
           />}
           
         >
