@@ -39,6 +39,7 @@ function App() {
 
     axios.get(`https://covid.erikscow.com/proxy/countries`)
       .then(res => {
+        console.log(res)
         const data = res.data
         const formattedData = []
         for(const country in data){

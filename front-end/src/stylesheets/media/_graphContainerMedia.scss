@@ -1,11 +1,7 @@
 @media(max-width: 450px){
     .graph-outer-container{
         .top-row{
-            display:flex;
-            flex-direction: column-reverse;
-            
-            justify-content: center;
-            align-items: center;
+            justify-content: space-around;
             .select{
                 width: 110px;
                 z-index: 1000;

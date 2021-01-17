@@ -70,7 +70,7 @@ nav {
   margin: 0;
   height: 36px;
   background: #daeeee;
-  z-index: 300;
+  z-index: 1002;
 }
 nav .nav-container {
   width: 60%;
@@ -112,7 +112,7 @@ nav .nav-container .link-container .nav-link:hover {
   position: fixed;
   top: 36px;
   width: 60%;
-  z-index: 200;
+  z-index: 1001;
 }
 .content-container .data:hover {
   cursor: pointer;
@@ -290,7 +290,7 @@ nav .nav-container .link-container .nav-link:hover {
     position: sticky;
     top: 36px;
     width: 100%;
-    z-index: 200;
+    z-index: 1001;
   }
   .content-container .data:hover {
     cursor: pointer;
@@ -426,10 +426,7 @@ nav .nav-container .link-container .nav-link:hover {
 }
 @media (max-width: 450px) {
   .graph-outer-container .top-row {
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
   }
   .graph-outer-container .top-row .select {
     width: 110px;
@@ -444,12 +441,16 @@ nav .nav-container .link-container .nav-link:hover {
   }
 }
 @media (max-width: 935px) {
+  nav {
+    z-index: 1002;
+  }
   nav .nav-container {
     width: 90%;
   }
 }
 @media (max-width: 650px) {
   nav {
+    z-index: 1002;
     font-size: 14px;
   }
   nav .nav-container {
@@ -458,6 +459,7 @@ nav .nav-container .link-container .nav-link:hover {
 }
 @media (max-width: 450px) {
   nav {
+    z-index: 1002;
     font-size: 12px;
   }
   nav .nav-container {

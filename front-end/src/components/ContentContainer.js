@@ -23,12 +23,20 @@ const ContentContainer = (props) => {
     const [sort, setSort] = sortMethod
 
     //modified data to display
-    const [dataSet, setDataSet] = useState(countries)
+    const [modifiedDataStates, setModifiedDataStates] = useState(states)
+    const [modifiedDataCountries, setModifiedDataCountries] = useState(countries)
+    const [dataSet, setDataSet] = useState(modifiedDataStates)
     const [searched, setSearched] = useState(dataSet)
     const [sorted, setSorted] = useState(dataSet)
+    
 
     const [graphOpen, setGraphOpen] = useState(false)
     const [graphOwner, setGraphOwner] = useState('')
+
+    useEffect(() => {
+        setModifiedDataCountries(countries)
+        setModifiedDataStates(states)
+    }, [states, countries])
 
     useEffect(() => {
         setSearched(dataSet)
@@ -37,11 +45,11 @@ const ContentContainer = (props) => {
 
     useEffect(() => {
         if (locationType === 'countries'){
-            setDataSet(countries)
+            setDataSet(modifiedDataCountries)
         } else {
-            setDataSet(states)
+            setDataSet(modifiedDataStates)
         }
-    }, [locationType, countries, states])
+    }, [locationType, modifiedDataCountries, modifiedDataStates])
 
 
     useEffect(() => {
@@ -57,37 +65,56 @@ const ContentContainer = (props) => {
     
     useEffect(() => {
         if(sort[1] === 'alphabetical'){
-            setSearched(searched.sort((a, b) => {
+            setModifiedDataStates(modifiedDataStates.sort((a, b) => {
+                return a.locationName.localeCompare(b.locationName)
+            }))
+            setModifiedDataCountries(modifiedDataCountries.sort((a, b) => {
                 return a.locationName.localeCompare(b.locationName)
             }))
         }
         if(sort[1] === 'cases'){
-            setSearched(searched.sort((a, b) => {
+            setModifiedDataStates(modifiedDataStates.sort((a, b) => {
+                return a.totalCases - b.totalCases
+            }))
+            setModifiedDataCountries(modifiedDataCountries.sort((a, b) => {
                 return a.totalCases - b.totalCases
             }))
         }
         if(sort[1] === 'deaths'){
-            setSearched(searched.sort((a, b) => {
+            setModifiedDataStates(modifiedDataStates.sort((a, b) => {
+                return a.totalDeaths - b.totalDeaths
+            }))
+            setModifiedDataCountries(modifiedDataCountries.sort((a, b) => {
                 return a.totalDeaths - b.totalDeaths
             }))
         }
         if(sort[1] === 'cases/mil'){
-            setSearched(searched.sort((a, b) => {
+            setModifiedDataStates(modifiedDataStates.sort((a, b) => {
+                return a.casesPerMil - b.casesPerMil
+            }))
+            setModifiedDataCountries(modifiedDataCountries.sort((a, b) => {
                 return a.casesPerMil - b.casesPerMil
             }))
         }
         if(sort[1] === 'deaths/mil'){
-            setSearched(searched.sort((a, b) => {
+            setModifiedDataStates(modifiedDataStates.sort((a, b) => {
+                return a.deathsPerMil - b.deathsPerMil
+            }))
+            setModifiedDataCountries(modifiedDataCountries.sort((a, b) => {
                 return a.deathsPerMil - b.deathsPerMil
             }))
         }
         if(sort[1] === 'deathRate'){
-            setSearched(searched.sort((a, b) => {
+            setModifiedDataStates(modifiedDataStates.sort((a, b) => {
+                return a.deathRate - b.deathRate
+            }))
+            setModifiedDataCountries(modifiedDataCountries.sort((a, b) => {
                 return a.deathRate - b.deathRate
             }))
         }
         if(sort[0] === 'high-low'){
-            setSearched(searched.reverse())
+            setModifiedDataStates(modifiedDataStates.reverse())
+            setModifiedDataCountries(modifiedDataCountries.reverse())
         }
         
     },[sort])
