@@ -82,19 +82,25 @@ const Graph = ({data}) => {
           labels={({ datum }) => `${datum.x.getMonth() + 1}/${datum.x.getDate()}/${datum.x.getFullYear()}\n${datum.locationName}: ${commafy(datum.y)}`}
           labelComponent={
             <V.VictoryTooltip
+            x={100}
+            y={0}
             flyoutStyle={{
-              stroke:'#4bc0c0',
+              stroke: 'none',
               strokeWidth: '2',
-              fill: 'black',
+              fill: 'white',
               fillOpacity: '0.7'
             }}
             flyoutPadding={{top:5, bottom:5, left:5, right: 5}}
-            style={{
+            style={[{
               textAnchor: 'start',
               fontSize: 15,
-              fill: 'lightgrey'
-            }}
-            orientation={'bottom'}
+              fill: '#445a64'
+            },{
+              textAnchor: 'start',
+              fontSize: 15,
+              fill: '#40a0a0'
+            }]}
+            orientation='right'
             pointerLength={0}
             constrainToVisibleArea
             />
@@ -126,7 +132,6 @@ const Graph = ({data}) => {
           scale={{ x: 'time'}}
           minDomain={{y:0}}
           containerComponent={<V.VictoryVoronoiContainer
-            onActivated={determineOrientation}
             voronoiDimension = "x"
             activateData={false}
           />}
@@ -140,19 +145,25 @@ const Graph = ({data}) => {
           labels={({ datum }) => `${datum.x.getMonth() + 1}/${datum.x.getDate()}/${datum.x.getFullYear()}\n${datum.locationName}: ${commafy(datum.y)}`}
           labelComponent={
             <V.VictoryTooltip
+            x={100}
+            y={0}
             flyoutStyle={{
-              stroke: '#4bc0c0',
+              stroke: 'none',
               strokeWidth: '2',
-              fill: 'black',
+              fill: 'white',
               fillOpacity: '0.7'
             }}
             flyoutPadding={{top:5, bottom:5, left:5, right: 5}}
-            style={{
+            style={[{
               textAnchor: 'start',
               fontSize: 15,
-              fill: 'lightgrey'
-            }}
-            orientation={orientationOne}
+              fill: '#445a64'
+            },{
+              textAnchor: 'start',
+              fontSize: 15,
+              fill: '#40a0a0'
+            }]}
+            orientation='right'
             pointerLength={0}
             constrainToVisibleArea
             />
@@ -171,22 +182,24 @@ const Graph = ({data}) => {
 
         <V.VictoryGroup
           data={data.comparisonSet}
-          labels={({ datum }) => `${datum.x.getMonth() + 1}/${datum.x.getDate()}/${datum.x.getFullYear()}\n${datum.locationName}: ${commafy(datum.y)}`}
+          labels={({ datum }) => `${datum.locationName}: ${commafy(datum.y)}`}
           labelComponent={
             <V.VictoryTooltip
+              x={100}
+              y={44}
               flyoutStyle={{
-                stroke:'#ff6384',
+                stroke:'none',
                 strokeWidth: '2',
-                fill: 'black',
+                fill: 'none',
                 fillOpacity: '0.7'
               }}
               flyoutPadding={{top:5, bottom:5, left:5, right: 5}}
               style={{
                 textAnchor: 'start',
                 fontSize: 15,
-                fill: 'lightgrey'
+                fill: '#ff6384'
               }}
-              orientation={orientationTwo}
+              orientation='right'
               pointerLength={0}
               constrainToVisibleArea
             />
