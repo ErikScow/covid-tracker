@@ -227,8 +227,7 @@ nav .nav-container .link-container .nav-link:hover {
   width: 15%;
 }
 .tip-container .tip-component {
-  line-height: 22px;
-  text-align: justify;
+  line-height: 24px;
 }
 .tip-container .tip-component h3 {
   color: #ff6384;
@@ -409,6 +408,9 @@ nav .nav-container .link-container .nav-link:hover {
     font-size: inherit;
     margin-top: 10px;
   }
+  .side-controlls input {
+    font-size: 14px;
+  }
 }
 @media (max-width: 450px) {
   .side-controlls {
@@ -422,9 +424,8 @@ nav .nav-container .link-container .nav-link:hover {
   }
   .tip-container .tip-component {
     font-size: 14px;
-    line-height: 15px;
+    line-height: 18px;
     text-align: left;
-    height: 275px;
     overflow-y: auto;
   }
 }
@@ -440,9 +441,6 @@ nav .nav-container .link-container .nav-link:hover {
   .tip-container {
     position: relative;
     width: 80%;
-  }
-  .tip-container .tip-component {
-    height: 80px;
   }
 }
 @media (max-width: 935px) {

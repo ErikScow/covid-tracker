@@ -69,7 +69,7 @@ const SideControlls = () => {
         <div className="side-controlls">
             <input 
                 type="text"
-                placeholder="Search"
+                placeholder="Search Locations"
                 value={filterStr}
                 onChange={setFilterString}
             />
