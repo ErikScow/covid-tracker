@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors')
 const axios = require('axios');
+const schedule = require('node-schedule')
 
 let countriesCache = {}
 let countriesHistoricalCasesCache = {}
@@ -8,26 +9,15 @@ let countriesHistoricalDeathsCache = {}
 let statesCache = {}
 let statesHistoricalCache = {}
 
-function scheduleReset() {
-    // get current time
-    let reset = new Date();
-    // update the Hours, mins, secs to the 24th hour (which is when the next day starts)
-    reset.setHours(24, 0, 0, 0);
-    // calc amount of time until restart
-    let t = reset.getTime() - Date.now();
-    setTimeout(function() {
-        // reset variable
-        countriesCache = {}
-        countriesHistoricalCasesCache = {}
-        countriesHistoricalDeathsCache = {}
-        statesCache = {}
-        statesHistoricalCache = {}
-        // schedule the next variable reset
-        scheduleReset();
-    }, t);
-}
+const globalResetJob = schedule.scheduleJob('30 0 * * *', () => {
+    countriesCache = {}
+    countriesHistoricalCasesCache = {}
+    countriesHistoricalDeathsCache = {}
+    statesCache = {}
+    statesHistoricalCache = {}
+  })
 
-scheduleReset();
+globalResetJob();
 
 const app = express();
 
