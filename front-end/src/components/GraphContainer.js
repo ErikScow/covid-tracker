@@ -7,6 +7,8 @@ import { convertStateName } from '../utils/stringModifiers'
 import { statePopulationHash } from '../utils/data'
 
 import GraphComponent from './GraphComponent'
+import GraphComponentSmall from './GraphComponentSmall'
+import GraphComponentLarge from './GraphComponentLarge'
 
 const GraphContainer = (props) => {
     const [isLoading, setIsLoading] = useState(true)
@@ -292,6 +294,8 @@ const GraphContainer = (props) => {
                     </div>
                 </div>
                 <GraphComponent data={{currentSet: currentGraphData[graphDataType]}}/>
+                <GraphComponentSmall data={{currentSet: currentGraphData[graphDataType]}}/>
+                <GraphComponentLarge data={{currentSet: currentGraphData[graphDataType]}}/>
             </div>
         )
     } else if(clipBoardData.cases[0].locationName === '') {
@@ -343,6 +347,8 @@ const GraphContainer = (props) => {
                     </div>
                 </div>
                 <GraphComponent data={{currentSet: currentGraphData[graphDataType]}}/>
+                <GraphComponentSmall data={{currentSet: currentGraphData[graphDataType]}}/>
+                <GraphComponentLarge data={{currentSet: currentGraphData[graphDataType]}}/>
             </div>
         )
     } else if(!clipBoardStatus){
@@ -395,6 +401,8 @@ const GraphContainer = (props) => {
                         </div>
                     </div>
                     <GraphComponent data={{currentSet: currentGraphData[graphDataType]}}/>
+                    <GraphComponentSmall data={{currentSet: currentGraphData[graphDataType]}}/>
+                    <GraphComponentLarge data={{currentSet: currentGraphData[graphDataType]}}/>
                 </div>
             )
         }
@@ -458,6 +466,8 @@ const GraphContainer = (props) => {
                     </div>
                 </div>
                 <GraphComponent data={{currentSet: currentGraphData[graphDataType], comparisonSet: clipBoardData[graphDataType]}}/>
+                <GraphComponentSmall data={{currentSet: currentGraphData[graphDataType], comparisonSet: clipBoardData[graphDataType]}}/>
+                <GraphComponentLarge data={{currentSet: currentGraphData[graphDataType], comparisonSet: clipBoardData[graphDataType]}}/>
             </div>
         )
     

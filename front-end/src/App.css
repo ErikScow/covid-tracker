@@ -214,6 +214,10 @@ nav .nav-container .link-container .nav-link:hover {
   padding: 0px;
 }
 
+.medium {
+  display: block;
+}
+
 .tip-container {
   position: fixed;
   right: 2.5%;
@@ -333,7 +337,7 @@ nav .nav-container .link-container .nav-link:hover {
 }
 @media (max-width: 650px) {
   .content-container {
-    font-size: 12px;
+    font-size: 14px;
   }
   .content-container .graph-outer-container .select {
     font-size: 16px;
@@ -342,7 +346,7 @@ nav .nav-container .link-container .nav-link:hover {
 }
 @media (max-width: 450px) {
   .content-container {
-    font-size: 10px;
+    font-size: 12px;
   }
   .content-container .graph-outer-container .select {
     font-size: 16px;
@@ -435,6 +439,37 @@ nav .nav-container .link-container .nav-link:hover {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+  }
+}
+@media (min-width: 1200px) {
+  .large {
+    display: block;
+  }
+}
+@media (max-width: 1200px) {
+  .medium {
+    display: block;
+  }
+
+  .small {
+    display: none;
+  }
+
+  .large {
+    display: none;
+  }
+}
+@media (max-width: 650px) {
+  .small {
+    display: block;
+  }
+
+  .large {
+    display: none;
+  }
+
+  .medium {
+    display: none;
   }
 }
 @media (max-width: 450px) {

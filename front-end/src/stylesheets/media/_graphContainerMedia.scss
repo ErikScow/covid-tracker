@@ -1,3 +1,33 @@
+@media(min-width: 1200px){
+    .large{
+        display: block;
+    }
+}
+
+@media(max-width: 1200px){
+    .medium{
+        display:block;
+    }
+    .small{
+        display:none;
+    }
+    .large{
+        display:none;
+    }
+}
+
+@media(max-width: 650px){
+    .small{
+        display:block;
+    }
+    .large{
+        display:none;
+    }
+    .medium{
+        display:none;
+    }
+}
+
 @media(max-width: 450px){
     .graph-outer-container{
         .top-row{
@@ -16,5 +46,12 @@
         .chart-container{
             padding: 0px;
         }
-    } 
+    }
 }
+
+
+
+
+
+
+

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import * as V from 'victory'
 import { abbreviateNum, commafyNum as commafy } from '../utils/numModifiers'
 
+const VictoryVoronoiCursorContainer = V.createContainer('voronoi', 'cursor')
+
 const Graph = ({data}) => { 
 
     const [orientationOne, setOrientationOne] = useState('top')
@@ -22,7 +24,7 @@ const Graph = ({data}) => {
 
     if (!data.comparisonSet){
       return(
-        <div className='chart-container'>
+        <div className='chart-container medium'>
         <V.VictoryChart 
           width={800}
           height={350}
@@ -30,12 +32,14 @@ const Graph = ({data}) => {
           theme={V.VictoryTheme.material}
           scale={{ x: 'time'}}
           minDomain={{y:0}}
-          containerComponent={<V.VictoryVoronoiContainer
+          containerComponent={<VictoryVoronoiCursorContainer
+            cursorDimension = "x"
             voronoiDimension = "x"
             activateData={false}
             style={{
               touchAction: 'auto'
             }}
+            cursorComponent={<V.LineSegment style={{stroke: '#ccc'}}/>}
           />}
           
         >
@@ -123,7 +127,7 @@ const Graph = ({data}) => {
     }
 
     return(
-        <div className='chart-container'>
+        <div className='chart-container medium'>
         <V.VictoryChart 
           width={800}
           height={350}
@@ -131,9 +135,14 @@ const Graph = ({data}) => {
           theme={V.VictoryTheme.material}
           scale={{ x: 'time'}}
           minDomain={{y:0}}
-          containerComponent={<V.VictoryVoronoiContainer
+          containerComponent={<VictoryVoronoiCursorContainer
+            cursorDimension = "x"
             voronoiDimension = "x"
             activateData={false}
+            style={{
+              touchAction: 'auto'
+            }}
+            cursorComponent={<V.LineSegment style={{stroke: '#ccc'}}/>}
           />}
           
         >
