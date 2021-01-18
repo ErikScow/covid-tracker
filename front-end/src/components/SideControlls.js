@@ -198,7 +198,7 @@ const SideControlls = () => {
             />
         
             <p className='clipboard-indicator'>Saved: <span className='clipboard'>{clipBoardDisplay.cases[0].locationName}</span></p>
-            
+            <p className='clipboard-indicator mobile'>Saved: <span className='clipboard'>{clipBoardDisplay.cases[0].locationName}</span></p>
         </div>
     )
 }
