@@ -445,6 +445,14 @@ nav .nav-container .link-container .nav-link:hover {
   .large {
     display: block;
   }
+
+  .medium {
+    display: none;
+  }
+
+  .small {
+    display: none;
+  }
 }
 @media (max-width: 1200px) {
   .medium {

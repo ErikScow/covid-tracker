@@ -2,6 +2,12 @@
     .large{
         display: block;
     }
+    .medium{
+        display: none;
+    }
+    .small{
+        display: none;
+    }
 }
 
 @media(max-width: 1200px){
