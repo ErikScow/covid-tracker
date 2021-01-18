@@ -397,9 +397,11 @@ nav .nav-container .link-container .nav-link:hover {
     bottom: 10px;
     left: 10px;
     background: white;
-    width: 150px;
-    padding: 5px;
+    font-size: 14px;
+    height: 16px;
+    padding: 7px;
     border: 1px solid #dadada;
+    border-radius: 5px;
   }
 }
 @media (max-width: 650px) {
