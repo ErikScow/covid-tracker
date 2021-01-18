@@ -153,6 +153,7 @@ const ContentContainer = (props) => {
                         deathRate={location.deathRate}
                         abbreviation={location.abbreviation}
                         graphOpen={graphOpen}
+                        graphOwner={graphOwner}
                         setGraphOpen={setGraphOpen}
                         setGraphOwner={setGraphOwner}
                         />
@@ -168,6 +169,7 @@ const ContentContainer = (props) => {
                 deathRate={location.deathRate}
                 abbreviation={location.abbreviation}
                 graphOpen={false}
+                graphOwner={graphOwner}
                 setGraphOpen={setGraphOpen}
                 setGraphOwner={setGraphOwner}
                 />

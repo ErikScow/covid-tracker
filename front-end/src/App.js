@@ -32,6 +32,14 @@ function App() {
     'deathsPerMil': [{locationName: '', x: new Date(), y:0}],
     'deathRate': [{locationName: '', x: new Date(), y:0}],
   })
+  const [clipBoardDaily, setClipBoardDaily] = useState({
+    locationName: '',
+    totalCases: '',
+    totalDeaths: '',
+    casesPerMil: '',
+    deathsPerMil: '',
+    deathRate: '',
+  })
 
   const [currentLocationType, setCurrentLocationType] = useState('countries')
   const [filterString, setFilterString] = useState('')
@@ -41,7 +49,6 @@ function App() {
 
     axios.get(`https://covid.erikscow.com/proxy/countries`)
       .then(res => {
-        console.log(res)
         const data = res.data
         const formattedData = []
         for(const country in data){
@@ -116,6 +123,7 @@ function App() {
         graphDataStates: [graphDataStates, setGraphDataStates],
         graphDataCountries: [graphDataCountries, setGraphDataCountries],
         clipBoard: [clipBoard, setClipBoard],
+        clipBoardDaily: [clipBoardDaily, setClipBoardDaily],
         currentLocationType: [currentLocationType, setCurrentLocationType],
         filterString: [filterString, setFilterString],
         sortMethod: [sortMethod, setSortMethod],

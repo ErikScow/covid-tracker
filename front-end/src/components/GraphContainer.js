@@ -11,10 +11,11 @@ import GraphComponent from './GraphComponent'
 const GraphContainer = (props) => {
     const [isLoading, setIsLoading] = useState(true)
 
-    const { graphDataStates, graphDataCountries, clipBoard } = useContext(Context)
+    const { graphDataStates, graphDataCountries, clipBoard, clipBoardDaily } = useContext(Context)
     const [graphStatesStore, setGraphStatesStore] = graphDataStates
     const [graphCountriesStore, setGraphCountriesStore] = graphDataCountries
     const [clipBoardData, setClipBoardData] = clipBoard
+    const [clipBoardDay, setClipBoardDay] = clipBoardDaily
 
     const [clipBoardButton, setClipBoardButton] = useState('Compare')
     const [clipBoardStatus, setClipBoardStatus] = useState(false)
@@ -204,8 +205,26 @@ const GraphContainer = (props) => {
 
     const saveToClipBoard = () => {
         setClipBoardData(currentGraphData)
+        setClipBoardDay({
+            locationName: props.locationName,
+            totalCases: props.totalCases,
+            totalDeaths: props.totalDeaths,
+            casesPerMil: props.casesPerMil,
+            deathsPerMil: props.deathsPerMil,
+            deathRate: props.deathRate,
+        })
     }
 
+    const unsaveToClipBoard = () => {
+        setClipBoardData({
+            'cases':[{locationName: '', x: new Date(), y:0}],
+            'deaths': [{locationName: '', x: new Date(), y:0}],
+            'casesPerMil': [{locationName: '', x: new Date(), y:0}],
+            'deathsPerMil': [{locationName: '', x: new Date(), y:0}],
+            'deathRate': [{locationName: '', x: new Date(), y:0}],
+          })
+    }
+ 
     const changeDataType = (e) => {
         setGraphDataType(e.value)
     }
@@ -221,6 +240,110 @@ const GraphContainer = (props) => {
     if(isLoading){
         return(
             <div className='loader'></div>
+        )
+    } 
+    if (props.graphOwner === clipBoardData.cases[0].locationName){
+        return(
+            <div className='graph-outer-container'>
+                <div className='top-row'>
+                <Select 
+                    className='select'
+                    options={dataTypeOptions}
+                    onChange={changeDataType}
+                    defaultValue={{ value: 'cases', label:'Cases' }}
+                    isSearchable={false}
+                    theme={(theme) => ({
+                        ...theme,
+                        colors: {
+                        ...theme.colors,
+                            primary25: '#daedee',
+                            primary: '#40a0a0',
+                            primary50: '#daedee'
+                        },
+                        })}
+                    styles={{
+                        control: (provided, state) => ({
+                            ...provided,
+                            minHeight: '30px',
+                            height: '30px',
+                            boxShadow: state.isFocused ? null : null,
+                            }),
+                        
+                            valueContainer: (provided, state) => ({
+                            ...provided,
+                            height: '30px',
+                            padding: '0 6px'
+                            }),
+                        
+                            input: (provided, state) => ({
+                            ...provided,
+                            margin: '0px',
+                            }),
+                            indicatorsContainer: (provided, state) => ({
+                            ...provided,
+                            height: '30px',
+                            }),
+                        
+                    }}
+                />
+                    <div className='button-container'>
+                        <p className='graph-saved-indicator'>Saved!</p>
+                        <button onClick={unsaveToClipBoard}>Unsave</button>
+                    </div>
+                </div>
+                <GraphComponent data={{currentSet: currentGraphData[graphDataType]}}/>
+            </div>
+        )
+    } else if(clipBoardData.cases[0].locationName === '') {
+        return(
+            <div className='graph-outer-container'>
+                <div className='top-row'>
+                <Select 
+                    className='select'
+                    options={dataTypeOptions}
+                    onChange={changeDataType}
+                    defaultValue={{ value: 'cases', label:'Cases' }}
+                    isSearchable={false}
+                    theme={(theme) => ({
+                        ...theme,
+                        colors: {
+                        ...theme.colors,
+                          primary25: '#daedee',
+                          primary: '#40a0a0',
+                          primary50: '#daedee'
+                        },
+                      })}
+                    styles={{
+                        control: (provided, state) => ({
+                            ...provided,
+                            minHeight: '30px',
+                            height: '30px',
+                            boxShadow: state.isFocused ? null : null,
+                          }),
+                      
+                          valueContainer: (provided, state) => ({
+                            ...provided,
+                            height: '30px',
+                            padding: '0 6px'
+                          }),
+                      
+                          input: (provided, state) => ({
+                            ...provided,
+                            margin: '0px',
+                          }),
+                          indicatorsContainer: (provided, state) => ({
+                            ...provided,
+                            height: '30px',
+                          }),
+                      
+                    }}
+                />
+                    <div className='button-container'>
+                        <button onClick={saveToClipBoard}>Save</button>
+                    </div>
+                </div>
+                <GraphComponent data={{currentSet: currentGraphData[graphDataType]}}/>
+            </div>
         )
     } else if(!clipBoardStatus){
             return(
@@ -278,6 +401,17 @@ const GraphContainer = (props) => {
 
         return(
             <div className='graph-outer-container'>
+                <div className='items-container comparison-row'>
+                    <p className='name-item'>{clipBoardDay.locationName}</p>
+                    <div className='other-items'>
+                        <p className='row-item'>{clipBoardDay.totalCases}</p>
+                        <p className='row-item'>{clipBoardDay.totalDeaths}</p>
+                        <p className='row-item'>{clipBoardDay.casesPerMil}</p>
+                        <p className='row-item'>{clipBoardDay.deathsPerMil}</p>
+                        <p className='row-item'>{clipBoardDay.deathRate}%</p>
+                    </div>
+                    
+                </div>
                 <div className='top-row'>
                 <Select 
                         className='select'

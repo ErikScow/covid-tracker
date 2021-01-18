@@ -3,8 +3,6 @@ import GraphContainer from './GraphContainer'
 
 const DataComponent = (props) => {
     
-    const [graphOpen, setGraphOpen] = useState(false)
-
     const toggleGraph = () => {
         if(props.graphOpen){
             props.setGraphOpen(false)
@@ -29,9 +27,15 @@ const DataComponent = (props) => {
             </div>        
                 
                 <GraphContainer 
+                    graphOwner={props.graphOwner}
                     abbreviation={props.abbreviation} 
                     locationType={props.locationType}
                     locationName={props.locationName}
+                    totalCases={props.totalCases}
+                    totalDeaths={props.totalDeaths}
+                    casesPerMil={props.casesPerMil}
+                    deathsPerMil={props.deathsPerMil}
+                    deathRate={props.deathRate}
                 />
             
         </div>

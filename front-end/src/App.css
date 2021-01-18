@@ -139,6 +139,10 @@ nav .nav-container .link-container .nav-link:hover {
   width: 20%;
   text-align: right;
 }
+.content-container .comparison-row {
+  color: #ff6384;
+  padding-top: 0;
+}
 
 .side-controlls {
   position: fixed;
@@ -169,10 +173,10 @@ nav .nav-container .link-container .nav-link:hover {
 }
 
 .graph-outer-container {
-  padding: 10px;
   position: relative;
 }
 .graph-outer-container .top-row {
+  padding-top: 10px;
   display: flex;
   justify-content: center;
 }
@@ -200,6 +204,11 @@ nav .nav-container .link-container .nav-link:hover {
 .graph-outer-container .top-row .button-container button:hover {
   cursor: pointer;
   border: 1px solid #b9b9b9;
+}
+.graph-outer-container .top-row .button-container p {
+  color: #8b8b8b;
+  font-size: 14px;
+  margin: 8px 8px;
 }
 .graph-outer-container .chart-container {
   padding: 0px;
@@ -317,6 +326,10 @@ nav .nav-container .link-container .nav-link:hover {
     width: 20%;
     text-align: right;
   }
+  .content-container .comparison-row {
+    color: #ff6384;
+    padding-top: 0;
+  }
 }
 @media (max-width: 650px) {
   .content-container {
@@ -426,15 +439,17 @@ nav .nav-container .link-container .nav-link:hover {
 }
 @media (max-width: 450px) {
   .graph-outer-container .top-row {
-    justify-content: space-around;
+    justify-content: space-between;
   }
   .graph-outer-container .top-row .select {
     width: 110px;
     z-index: 1000;
+    margin-left: 40px;
   }
   .graph-outer-container .top-row .button-container {
     position: relative;
     right: 0px;
+    margin-right: 40px;
   }
   .graph-outer-container .chart-container {
     padding: 0px;

@@ -20,6 +20,7 @@
             color: #40a0a0
         }
     }
+    
     .items-container{
         width: 100%;
         display:flex;
@@ -42,5 +43,9 @@
                 text-align: right;
             }
         }
+    }
+    .comparison-row{
+        color: #ff6384;
+        padding-top: 0;
     }
 }

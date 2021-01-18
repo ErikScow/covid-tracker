@@ -55,10 +55,7 @@ const Graph = ({data}) => {
               strokeDasharray: 0
             }
           }}
-          tickLabelComponent={<V.VictoryLabel
-            angle={-45}
-            transform= 'translate(-20 15)'
-          />}
+          tickFormat={date => date.toLocaleString('en-us', { month:'short' })}
         />
 
         <V.VictoryAxis
@@ -116,7 +113,7 @@ const Graph = ({data}) => {
             style={{
               data:{ strokeWidth: 3 }
             }}
-            interpolation='natural'
+            interpolation='linear'
           />
         </V.VictoryGroup>
         
@@ -179,7 +176,7 @@ const Graph = ({data}) => {
             style={{
               data:{ strokeWidth: 3 }
             }}
-            interpolation='natural'
+            interpolation='linear'
           />
         </V.VictoryGroup>
 
@@ -215,7 +212,7 @@ const Graph = ({data}) => {
             style={{
               data:{ strokeWidth: 3 }
             }}
-            interpolation='natural'
+            interpolation='linear'
           />
         </V.VictoryGroup>
 
@@ -234,10 +231,7 @@ const Graph = ({data}) => {
               strokeDasharray:0
             }
           }}
-          tickLabelComponent={<V.VictoryLabel
-            angle={-45}
-            transform= 'translate(-20 15)'
-          />}
+          tickFormat={date => date.toLocaleString('en-us', { month:'short' })}
         />
 
         <V.VictoryAxis

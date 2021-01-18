@@ -1,7 +1,7 @@
 .graph-outer-container{
-    padding: 10px;
     position:relative;
     .top-row{
+        padding-top: 10px;
         display:flex;
         justify-content: center;
         .select{
@@ -27,6 +27,11 @@
                     cursor: pointer;
                     border: 1px solid rgb(185, 185, 185)
                 }
+            }
+            p{
+                color: rgb(139, 139, 139);
+                font-size: 14px;
+                margin: 8px 8px;
             }
         }
     }
