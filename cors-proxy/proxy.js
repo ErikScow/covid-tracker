@@ -17,7 +17,6 @@ const globalResetJob = schedule.scheduleJob('35 0 * * *', () => {
     statesHistoricalCache = {}
   })
 
-globalResetJob();
 
 const app = express();
 
