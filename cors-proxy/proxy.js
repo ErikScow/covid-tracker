@@ -9,7 +9,7 @@ let countriesHistoricalDeathsCache = {}
 let statesCache = {}
 let statesHistoricalCache = {}
 
-const globalResetJob = schedule.scheduleJob('30 0 * * *', () => {
+const globalResetJob = schedule.scheduleJob('35 0 * * *', () => {
     countriesCache = {}
     countriesHistoricalCasesCache = {}
     countriesHistoricalDeathsCache = {}
