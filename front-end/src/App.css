@@ -181,7 +181,7 @@ nav .nav-container .link-container .nav-link:hover {
   justify-content: center;
 }
 .graph-outer-container .top-row .select {
-  width: 110px;
+  width: 140px;
 }
 .graph-outer-container .top-row .select .select {
   z-index: 1000;
@@ -442,7 +442,7 @@ nav .nav-container .link-container .nav-link:hover {
     justify-content: space-between;
   }
   .graph-outer-container .top-row .select {
-    width: 110px;
+    width: 140px;
     z-index: 1000;
     margin-left: 40px;
   }

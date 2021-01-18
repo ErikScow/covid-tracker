@@ -55,7 +55,7 @@ const GraphContainer = (props) => {
                                 formattedDataCasesPerMil.push({
                                     locationName: props.locationName,
                                     x: new Date(parseInt(date.slice(0,4)), parseInt(date.slice(5,7))-1, parseInt(date.slice(8))),
-                                    y: (caseData[date]/res.data.All.population) * 1000000,
+                                    y: Math.floor((caseData[date]/res.data.All.population) * 1000000),
                                 })
                             }
                             
@@ -96,7 +96,7 @@ const GraphContainer = (props) => {
                                 formattedDataDeathsPerMil.push({
                                     locationName: props.locationName,
                                     x: new Date(parseInt(date.slice(0,4)), parseInt(date.slice(5,7))-1, parseInt(date.slice(8))),
-                                    y: (deathsData[date]/res.data.All.population) * 1000000,
+                                    y: Math.floor((deathsData[date]/res.data.All.population) * 1000000),
                                 })
                             }
                             
@@ -151,12 +151,12 @@ const GraphContainer = (props) => {
                                 formattedDataCasesPerMil.push({
                                     locationName: convertStateName(data[i].state),
                                     x: new Date(parseInt(dateString.slice(0,4)), parseInt(dateString.slice(4,6))-1, parseInt(dateString.slice(6))),
-                                    y: (data[i].positive/statePopulation)*1000000
+                                    y: Math.floor((data[i].positive/statePopulation)*1000000)
                                 })
                                 formattedDataDeathsPerMil.push({
                                     locationName: convertStateName(data[i].state),
                                     x: new Date(parseInt(dateString.slice(0,4)), parseInt(dateString.slice(4,6))-1, parseInt(dateString.slice(6))),
-                                    y: (data[i].death/statePopulation)*1000000
+                                    y: Math.floor((data[i].death/statePopulation)*1000000)
                                 })
                             }
                             
