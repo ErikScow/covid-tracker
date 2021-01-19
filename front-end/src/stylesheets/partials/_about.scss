@@ -18,4 +18,29 @@
     a{
         color: #ff6384
     }
+    
 }
+.footer-container{
+        background: #daeeee;
+        footer{
+            width: 60%;
+            margin: 0 auto;
+            padding: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            div{
+                width: 150px;
+                height: 80px;
+            }
+            a{
+                display: block;
+                color: #ff6384;
+                text-decoration: none;
+                .link-icon{
+                    position: relative;
+                    height: 18px;
+                    top: 2px;
+                }
+            }
+        }
+    }

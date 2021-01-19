@@ -134,7 +134,27 @@ function App() {
             <Route exact path='/' component={ContentContainer}/>
             <Route path='/about' component={AboutContainer}/>
           </Switch>
-          
+          <div className='footer-container'>
+                <footer>
+                    
+                    <div className='personal-links'>
+                        <h3>Personal Links:</h3>
+                        <a href='https://github.com/ErikScow' target="_blank">Github</a>
+                        <a href='https://www.linkedin.com/in/erik-scow-134b8116b' target="_blank">LinkedIn</a>
+                        <a href='https://erikscow.com' target='_blank'>Portfolio</a>
+                    </div>
+                    <div className='project-links'>
+                        <h3>Project Links:</h3>
+                        <a href='https://github.com/ErikScow/covid-tracker' target="_blank">Project Repo</a>
+                        <a href='' target="_blank"></a>
+                    </div>
+                    <div className='contact-links'>
+                        <h3>Contact:</h3>
+                        <a href='mailto: erikscow@gmail.com'>Email</a>
+                    </div>
+                    
+                </footer>
+            </div>
         </div>
       </Context.Provider>
     </Router>

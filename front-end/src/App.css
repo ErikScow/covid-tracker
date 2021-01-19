@@ -263,6 +263,31 @@ nav .nav-container .link-container .nav-link:hover {
   color: #ff6384;
 }
 
+.footer-container {
+  background: #daeeee;
+}
+.footer-container footer {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.footer-container footer div {
+  width: 150px;
+  height: 80px;
+}
+.footer-container footer a {
+  display: block;
+  color: #ff6384;
+  text-decoration: none;
+}
+.footer-container footer a .link-icon {
+  position: relative;
+  height: 18px;
+  top: 2px;
+}
+
 .loader {
   border: 8px solid #f3f3f3;
   border-radius: 50%;
@@ -541,6 +566,28 @@ nav .nav-container .link-container .nav-link:hover {
 @media (max-width: 650px) {
   .about {
     width: 85%;
+  }
+
+  .footer-container {
+    font-size: 14px;
+  }
+  .footer-container footer {
+    width: 85%;
+  }
+}
+@media (max-width: 450px) {
+  .about {
+    width: 85%;
+  }
+
+  .footer-container {
+    font-size: 12px;
+  }
+  .footer-container footer {
+    width: 85%;
+  }
+  .footer-container footer div {
+    height: 60px;
   }
 }
 
