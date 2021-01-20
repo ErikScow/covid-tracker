@@ -28,6 +28,7 @@ const AboutContainer = () => {
                     <p>The front end of this project is pretty straight forward. It retrieves data and displays it using React, while a few other libraries are used for neat presentation.</p>
                     <ul>
                         <li>React</li>
+                        <li>SCSS</li>
                         <li>Victory JS (chart library)</li>
                         <li>react-relect (pre styled select components)</li>
                     </ul>
@@ -42,13 +43,13 @@ const AboutContainer = () => {
                     </ul>
                 
                 <h3>Challenges</h3>
-                <h4>Learning New Tech</h4>
-                <p>
-                    One of the challenges that I learned the most from was adapting to new technologies and libraries used in the project. I decided to use a charting library called Victory JS, which ended up being more difficult to implement than I was expecting. I learned the value of reading documentation closesly to truly understand a library. I also expanded my bug solving skills by dealing with issues that few if anyone before me has had to face, ranging from unexplanable crashes with no error messages to poor graph performance.
-                </p>
                 <h4>API Issues</h4>
                 <p>
                     Before this project, I knew how to use a data API to retrieve and use data, but during the course of this project I gained a much deeper understanding of the topic and some of the best practices involved. The first issue I ran across was a CORS issue from one of the API's, not allowing me to call data from the front end. I communicated with the API developer on what I should do about this, and eventually settled on adding a simple back end to the project that would serve as a proxy to all my requests. As per the API developer's request I also implemented caching on the proxy server to prevent too many requests to their API.
+                </p>
+                <h4>Learning New Tech</h4>
+                <p>
+                    One of the challenges that I learned the most from was adapting to new technologies and libraries used in the project. I decided to use a charting library called Victory JS, which ended up being more difficult to implement than I was expecting. I learned the value of reading documentation closesly to truly understand a library. I also expanded my bug solving skills by dealing with issues that few if anyone before me has had to face, ranging from unexplanable crashes with no error messages to poor graph performance.
                 </p>
                 <h2>Future Improvements</h2>
                 <h3>More Locations</h3>
