@@ -6,12 +6,13 @@
         justify-content: center;
         .select{
             width: 140px;
-            margin-left: 40px;
             .select{
                 z-index: 1000;
             }
         }
         .button-container{
+            position: absolute;
+            right:25px;
             display:flex;
             flex-flow: row nowrap;
             z-index: 1;

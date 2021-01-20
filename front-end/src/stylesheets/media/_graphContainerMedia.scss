@@ -37,10 +37,16 @@
 @media(max-width: 450px){
     .graph-outer-container{
         .top-row{
+            justify-content: space-between;
             .select{
                 width: 140px;
                 z-index: 1000;
                 margin-left: 40px;
+            }
+            .button-container{
+                position: relative;
+                right: 0px;
+                margin-right: 40px;
             }
         }
         .chart-container{
