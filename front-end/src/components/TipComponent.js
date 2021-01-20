@@ -5,7 +5,7 @@ const TipComponent = () => {
         <div className='tip-container'>
             <div className='tip-component'>
             <   h3>Tip:</h3>
-            <p>To compare data, open a location and click <span className='button'>Save</span>. Then open another location and click <span className='button'>Compare</span>.</p>
+            <p>To compare data, open a location and click the save button. Then open another location and click the compare button.</p>
         </div>
         </div>
         

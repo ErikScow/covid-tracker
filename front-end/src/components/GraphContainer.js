@@ -289,8 +289,9 @@ const GraphContainer = (props) => {
                     }}
                 />
                     <div className='button-container'>
-                        <p className='graph-saved-indicator'>Saved!</p>
+                        
                         <button onClick={unsaveToClipBoard}>Unsave</button>
+                        <p className='graph-saved-indicator'>Saved!</p>
                     </div>
                 </div>
                 <GraphComponent data={{currentSet: currentGraphData[graphDataType]}}/>

@@ -9,38 +9,23 @@
     h3{
         font-size: 22px;
         font-weight: bold;
-        padding-bottom: 14px;
+        padding: 14px 0;
+    }
+    h4{
+        font-size: 18px;
+        font-weight: 600;
+        padding: 12px 0;
+    }
+    ul{
+        list-style-type: circle;
+        padding: 10px 0 10px 20px;
     }
     p{
         font-size: 18px;
-        padding-bottom: 24px;
     }
     a{
         color: #ff6384
     }
     
 }
-.footer-container{
-        background: #daeeee;
-        footer{
-            width: 60%;
-            margin: 0 auto;
-            padding: 20px 0;
-            display: flex;
-            flex-wrap: wrap;
-            div{
-                width: 150px;
-                height: 80px;
-            }
-            a{
-                display: block;
-                color: #ff6384;
-                text-decoration: none;
-                .link-icon{
-                    position: relative;
-                    height: 18px;
-                    top: 2px;
-                }
-            }
-        }
-    }
+ 

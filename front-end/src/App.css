@@ -63,6 +63,36 @@ body {
   box-sizing: border-box;
 }
 
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.App .content-container {
+  flex: 1 0 auto;
+}
+.App .footer-container {
+  background: #daeeee;
+  flex-shrink: 0;
+}
+.App .footer-container footer {
+  flex-shrink: 0;
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.App .footer-container footer div {
+  width: 120px;
+  padding-bottom: 10px;
+}
+.App .footer-container footer a {
+  display: block;
+  color: #ff6384;
+  text-decoration: none;
+}
+
 nav {
   position: fixed;
   top: 0;
@@ -185,13 +215,12 @@ nav .nav-container .link-container .nav-link:hover {
 }
 .graph-outer-container .top-row .select {
   width: 140px;
+  margin-left: 40px;
 }
 .graph-outer-container .top-row .select .select {
   z-index: 1000;
 }
 .graph-outer-container .top-row .button-container {
-  position: absolute;
-  right: 25px;
   display: flex;
   flex-flow: row nowrap;
   z-index: 1;
@@ -253,39 +282,22 @@ nav .nav-container .link-container .nav-link:hover {
 .about h3 {
   font-size: 22px;
   font-weight: bold;
-  padding-bottom: 14px;
+  padding: 14px 0;
+}
+.about h4 {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px 0;
+}
+.about ul {
+  list-style-type: circle;
+  padding: 10px 0 10px 20px;
 }
 .about p {
   font-size: 18px;
-  padding-bottom: 24px;
 }
 .about a {
   color: #ff6384;
-}
-
-.footer-container {
-  background: #daeeee;
-}
-.footer-container footer {
-  width: 60%;
-  margin: 0 auto;
-  padding: 20px 0;
-  display: flex;
-  flex-wrap: wrap;
-}
-.footer-container footer div {
-  width: 150px;
-  height: 80px;
-}
-.footer-container footer a {
-  display: block;
-  color: #ff6384;
-  text-decoration: none;
-}
-.footer-container footer a .link-icon {
-  position: relative;
-  height: 18px;
-  top: 2px;
 }
 
 .loader {
@@ -315,6 +327,22 @@ nav .nav-container .link-container .nav-link:hover {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+@media (max-width: 650px) {
+  .App .footer-container {
+    font-size: 14px;
+  }
+  .App .footer-container footer {
+    width: 85%;
+  }
+}
+@media (max-width: 450px) {
+  .App .footer-container {
+    font-size: 12px;
+  }
+  .App .footer-container footer {
+    width: 85%;
   }
 }
 @media (max-width: 935px) {
@@ -419,7 +447,7 @@ nav .nav-container .link-container .nav-link:hover {
     display: block;
     position: fixed;
     bottom: 10px;
-    left: 10px;
+    right: 10px;
     background: white;
     font-size: 14px;
     height: 16px;
@@ -519,18 +547,10 @@ nav .nav-container .link-container .nav-link:hover {
   }
 }
 @media (max-width: 450px) {
-  .graph-outer-container .top-row {
-    justify-content: space-between;
-  }
   .graph-outer-container .top-row .select {
     width: 140px;
     z-index: 1000;
     margin-left: 40px;
-  }
-  .graph-outer-container .top-row .button-container {
-    position: relative;
-    right: 0px;
-    margin-right: 40px;
   }
   .graph-outer-container .chart-container {
     padding: 0px;
@@ -567,27 +587,10 @@ nav .nav-container .link-container .nav-link:hover {
   .about {
     width: 85%;
   }
-
-  .footer-container {
-    font-size: 14px;
-  }
-  .footer-container footer {
-    width: 85%;
-  }
 }
 @media (max-width: 450px) {
   .about {
     width: 85%;
-  }
-
-  .footer-container {
-    font-size: 12px;
-  }
-  .footer-container footer {
-    width: 85%;
-  }
-  .footer-container footer div {
-    height: 60px;
   }
 }
 

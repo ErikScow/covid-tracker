@@ -3,6 +3,7 @@ body{
     color: #445a64;
     box-sizing: border-box
 }
+@import './partials/app';
 @import './partials/nav';
 @import './partials/contentContainer';
 @import './partials/sideControlls';
@@ -11,6 +12,7 @@ body{
 @import './partials/about';
 @import './partials/loader';
 
+@import './media/appMedia';
 @import './media/contentContainerMedia';
 @import './media/sideControllsMedia';
 @import './media/tipsContainerMedia';

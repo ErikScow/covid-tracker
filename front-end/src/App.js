@@ -134,6 +134,7 @@ function App() {
             <Route exact path='/' component={ContentContainer}/>
             <Route path='/about' component={AboutContainer}/>
           </Switch>
+          
           <div className='footer-container'>
                 <footer>
                     
