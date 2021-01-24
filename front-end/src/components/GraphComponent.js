@@ -5,6 +5,7 @@ import { abbreviateNum, commafyNum as commafy } from '../utils/numModifiers'
 const VictoryVoronoiCursorContainer = V.createContainer('voronoi', 'cursor')
 
 const Graph = ({data}) => { 
+    
 
     const [orientationOne, setOrientationOne] = useState('top')
     const [orientationTwo, setOrientationTwo] = useState('bottom')
@@ -20,6 +21,10 @@ const Graph = ({data}) => {
         }
       }
       
+    }
+
+    if (!data.currentSet[0].x){
+      return <div></div>
     }
 
     if (!data.comparisonSet){
